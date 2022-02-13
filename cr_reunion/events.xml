@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<monthly>
+  <event>
+    <id>4</id>
+    <name>test</name>
+    <startdate>2022-02-09</startdate>
+    <enddate>2022-02-24</enddate>
+    <color>#3901FF</color>
+    <affichage>0</affichage>
+  </event>
+  <event>
+    <id>5</id>
+    <name>test</name>
+    <startdate>2022-01-10</startdate>
+    <enddate>2022-02-15</enddate>
+    <color>#FF0000</color>
+    <affichage>0</affichage>
+  </event>
+</monthly>

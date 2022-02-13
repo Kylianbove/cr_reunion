@@ -1,0 +1,58 @@
+#inscription{
+		width:calc(100% - 25px);
+    padding-left: 25px;
+    margin-left: 25px;
+		margin:0 auto;
+		margin-top:4%;
+
+		form{
+		  padding-left: 25px!important;
+		 }
+
+		 label{
+		 	color: #e9404b;
+		 	font-weight: 800;
+		 }
+
+		 input[type=text], input[type=tel], input[type=email], input[type=password], textarea {
+		 		width: 100%;
+		 		padding: 12px 20px;
+		 		margin: 8px 0;
+		 		display: inline-block;
+		 		border: 1px solid #ccc;
+		 		box-sizing: border-box;
+		 }
+
+		 input[type=submit] {
+		 		background-color: #e9404b;
+		 		color: white;
+		 		padding: 14px 20px;
+		 		margin: 8px 0;
+		 		border: none;
+		 		cursor: pointer;
+		 		width: 100%;
+		 		font-weight: 600;
+
+				&:hover {
+						color: #bababa;
+
+				}
+
+		 }
+}
+.form-group2 select {
+    width: 100%;
+    border: 1px solid #E9E9E9;
+    font-size: 0.9em;
+    width: 100%;
+    outline: none;
+    padding: 0.5em 1em;
+    color: #999;
+    margin-top: 0.5em;
+     font-family: 'Roboto', sans-serif;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}

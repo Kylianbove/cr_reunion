@@ -1,0 +1,40 @@
+@import'colors.scss';
+
+.formField{
+    margin-bottom: 0.5rem;
+    label{
+        color: $color7;
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+        font-size: 0.75rem;
+        text-transform: capitalize;
+    }
+    a{
+        text-align: right;
+        color: $color1;
+        font-size: 0.75rem;
+        display: block;
+        font-weight: 600;
+    }
+
+
+
+    .champs{
+        border: 0.0625rem solid $color8;
+        border-radius: 0.25rem;
+        font-size: 1rem;
+        color: $color9;
+        padding: 0.125rem 0.25rem;
+    }
+}
+
+.bouton{
+    width: 100%;
+    background: $color1;
+    color: $color2;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: none;
+    padding: 0.125rem 0.25rem;
+}

@@ -1,0 +1,226 @@
+@import'colors.scss';
+.rowContent{
+    padding-left: calc(30px + 3.5rem);
+}
+.colCentre{
+    padding: 1.5rem 1rem 1.5rem 0;
+    height: calc(100vh - (60px + 2.25rem));
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.colDroite{
+    background: $color5;
+    min-height: calc(100vh - (60px + 2.25rem));
+    padding: 0!important;
+}
+@media only screen and (max-width: 680px) {
+    .colDroite{
+        background: $color5;
+        min-height: calc(100vh - (60px + 1rem));
+    }
+}
+
+h2{
+    font-size: 1.5rem;
+    color: $color1;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    .fa-duotone{
+        width: 30px;
+        font-size: 1.25rem;
+    }
+}
+.texte{
+    font-size: 0.875rem;
+    color: $color9;
+    margin-bottom: 2rem;
+}
+
+.actuLanceur{
+    border-left: 0.0625rem solid $color1;
+    padding-left: 0.5rem;
+    margin-left: 25px;
+    margin-bottom: 1.25rem;
+    h3{
+        font-size: 1rem;
+        color: $color1;
+    }
+    .accroche{
+        font-size: 0.875rem;
+        color: $color9;
+        margin-bottom: 0.75rem;
+    }
+    a{
+        color: $color1;
+        opacity: 0.75;
+        font-weight: 600;
+        &:hover{
+            opacity: 1;
+            text-decoration: none;
+        }
+    }
+}
+
+.linkBar{
+    background: $color1;
+    text-align: right;
+    padding: 0.25rem 0.75rem;
+    color: $color2;
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.75rem;
+    &:hover{
+        text-decoration: none;
+        color: $color8;
+    }
+}
+.agenda, .actualites{
+    min-height: 525px;
+}
+
+.droiteContent{
+    padding: 0 0.75rem;
+    &:first-of-type{
+        padding-top: 1.5rem;
+    }
+    h3{
+        
+        color: $color1;
+        font-size: 1.125rem;
+        font-weight: 800;
+    }
+    h4{
+        color: $color1;
+        font-size: 1rem;
+    }
+    .accroche{
+        color: $color9;
+        font-size: 0.875rem; 
+        padding-bottom: 0.75rem;
+    }
+
+    a{
+        color: $color1;
+        opacity: 0.75;
+        font-weight: 600;
+        &:hover{
+            opacity: 1;
+            text-decoration: none;
+        }
+    }
+
+    margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 767px) {
+    .agenda, .actualites{
+        min-height: 0px;
+    }
+    .colCentre{
+        height: auto;
+    }
+    .actuLanceur{
+        margin-left: 0;
+    }
+}
+
+/** Pagination **/
+.navigationBar{
+    width: 100%;
+    text-align: center;
+    a{
+        &.active, &.active:hover{
+            background: $color1!important;
+            color: $color2!important;
+            opacity: 1!important;
+        }
+        &:hover{
+            background: $color1!important;
+            color: $color2!important;
+            opacity: .75; 
+        }
+        color: $color9!important;
+    }
+}
+
+/** Détail Article **/
+.detailArticle{
+    .date{
+        font-size: 0.75rem;
+        background: $color5;
+        padding: 0.25rem 0.5rem;
+        opacity: .75;
+    }
+    .accrocheArt{
+        font-weight: 600;
+        font-size: 0.875rem;
+        position: relative;
+        padding-bottom: 0.75rem;
+        &:after{
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 0.125rem;
+            background: $color1;
+            background: linear-gradient(90deg, $color1 0%, transparent 100%);
+            bottom: 0;
+            left: 0;
+        }
+    }
+    .contentArt{
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        *{
+            font-size: 0.875rem;
+
+        }
+    }
+}
+
+.downloads{
+    max-height: 6rem;
+    overflow: auto;
+    list-style: none;
+    li{
+        font-size: 0.75rem;
+        a{
+            color: $color9;
+            font-weight: 400;
+            line-height: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            .fa-duotone{
+                font-size: 1.5rem;
+                color: $color1;
+                &.fa-file-excel{
+                    color: darkgreen;
+                }
+                &.fa-file-word{
+                    color: darkblue;
+                }
+                &.fa-file-pdf{
+                    color: darkred;
+                }
+            }
+            span{
+                line-height: 1.5rem;
+                padding: 0rem 0.5rem;
+            }
+            &:hover{
+                color: $color1;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.illustrations{
+    img{
+        width: calc(50% - 1rem);
+        height: auto;
+        margin: 0.25rem;
+        border-radius: 0.25rem;
+    }
+}
+

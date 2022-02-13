@@ -1,0 +1,7 @@
+# Début protection par mot de passe
+Authname "Zone protégée"
+AuthUserFile "C:/wamp64/www/cr_reunion/admin/secur-folder/.htpasswd"
+AuthGroupFile "/dev/null"
+AuthType Basic
+Require valid-user
+# Fin protection par mot de passe
