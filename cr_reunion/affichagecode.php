@@ -24,7 +24,17 @@
     <div class="row">
 
       <?php
-      $code = $_GET['code'];
+      if(isset($_GET['code'])){
+        $key = "stagededeuxiemeanneedebtssioaulyceedechartres";
+  $text = $_GET['code'];
+  $cipher = "AES-256-CBC";
+
+  $ivlen = openssl_cipher_iv_length($cipher);
+  $iv = '1234567891011121';
+
+  $original_text = openssl_decrypt($text, $cipher, $key, $options=0, $iv);
+  $code = $original_text;
+        }
 
 
 
