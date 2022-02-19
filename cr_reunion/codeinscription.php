@@ -19,7 +19,18 @@
 <?php include('header.php'); ?>
 <div class="container">
 <?php include('nav.php'); ?>
-<?php $code = $_GET['code']; ?>
+<?php
+if(isset($_GET['code'])){
+  $key = "stagededeuxiemeanneedebtssioaulyceedechartres";
+  $text = $_GET['code'];
+  $cipher = "AES-256-CBC";
+
+  $ivlen = openssl_cipher_iv_length($cipher);
+  $iv = '1234567891011121';
+
+  $original_text = openssl_decrypt($text, $cipher, $key, $options=0, $iv);
+  $code = $original_text;
+  } ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <div class="row rowContent">
   <div class="col-sm-7 col-md-7 col-lg-9 colCentre">
@@ -65,7 +76,16 @@
 
 
       <h1>Code de Vérification</h1>
-      <a href="affichagecode.php?code=<?php echo $code;?>" target="_blank">voir le code</a>
+      <?php
+      $key = "stagededeuxiemeanneedebtssioaulyceedechartres";
+      $text = $code;
+      $cipher = "AES-256-CBC";
+
+
+       $ivlen = openssl_cipher_iv_length($cipher);
+       $iv = '1234567891011121';
+      $crypter = openssl_encrypt($text, $cipher, $key, $options=0, $iv);?>
+      <a href="affichagecode.php?code=<?php echo $crypter;?>" target="_blank">voir le code</a>
     <!--Timer inscription -->
       <div id="timer">30</div>
 

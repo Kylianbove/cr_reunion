@@ -36,6 +36,8 @@
         $Session10 = new Session();
         $Session10->setFlash("Votre inscription n'a pas pu être pris en compte",'error');
         $Session10->flash_danger();
+        $url = "inscription.php";
+        echo "<script>setTimeout(function(){location.href='".$url."'}, 10000);</script>";
 
       }
       ?>
@@ -179,7 +181,16 @@
                                             $stmt -> bindParam(':code', $code);
                                             $stmt->execute();
 
-                                            $url = "codeinscription.php?code=".$code;
+                                            $key = "stagededeuxiemeanneedebtssioaulyceedechartres";
+                                            $text = $code;
+                                            $cipher = "AES-256-CBC";
+
+
+                                             $ivlen = openssl_cipher_iv_length($cipher);
+                                             $iv = '1234567891011121';
+                                            $crypter = openssl_encrypt($text, $cipher, $key, $options=0, $iv);
+
+                                            $url = "codeinscription.php?code=".$crypter;
                                             echo "<script>setTimeout(function(){location.href='".$url."'}, 3000);</script>";
 
 

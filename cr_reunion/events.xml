@@ -16,4 +16,12 @@
     <color>#FF0000</color>
     <affichage>0</affichage>
   </event>
+  <event>
+    <id>8</id>
+    <name>test</name>
+    <startdate>2022-01-15</startdate>
+    <enddate>2022-02-09</enddate>
+    <color>#FFA000</color>
+    <affichage>1</affichage>
+  </event>
 </monthly>
