@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : Dim 13 fév. 2022 à 14:40
+-- Généré le : jeu. 12 mai 2022 à 13:22
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `actualite` (
   `date_modification` datetime DEFAULT NULL,
   `affichage` int(5) DEFAULT NULL,
   PRIMARY KEY (`id_actu`),
-  KEY `I_FK_ACTUALITE_CATEGORIE` (`id_cat`)
+  KEY `FK_C_ID` (`id_cat`)
 ) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `actualite` (
 --
 
 INSERT INTO `actualite` (`id_actu`, `id_cat`, `titre`, `accroche`, `texte`, `valider`, `publier`, `date_publication`, `date_modification`, `affichage`) VALUES
-(15, 3, 'testdate', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span></p>', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span></p>', 1, 1, '2022-01-12 14:13:24', '2022-01-27 15:39:46', 0),
+(15, 3, 'Test Complet', '<p><span style=\"color: rgb(17, 17, 17);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis</span></p>', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span></p>', 1, 1, '2022-01-12 14:13:24', '2022-03-17 17:33:47', 0),
 (17, 3, 'test2', '<p>test</p>', '<p>Ghjgnh</p>', 1, 1, '2022-01-14 13:56:38', '2022-01-20 16:59:18', 0),
 (18, 3, 'test25', '<p>azerty</p>', '<p><span source=\"\" sans=\"\" pro\",=\"\" sans-serif;=\"\" font-size:=\"\" 14px;\"=\"\" style=\"padding: 0px; margin: 0px; outline: none; font-size: 14px; font-family: &quot;Source Sans Pro&quot;, sans-serif; color: rgb(17, 17, 17);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span><span source=\"\" sans=\"\" pro\",=\"\" sans-serif;=\"\" font-size:=\"\" 14px;\"=\"\" style=\"padding: 0px; margin: 0px; outline: none; font-size: 14px; font-family: &quot;Source Sans Pro&quot;, sans-serif; color: rgb(17, 17, 17);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span><span source=\"\" sans=\"\" pro\",=\"\" sans-serif;=\"\" font-size:=\"\" 14px;\"=\"\" style=\"padding: 0px; margin: 0px; outline: none; font-size: 14px; font-family: &quot;Source Sans Pro&quot;, sans-serif; color: rgb(17, 17, 17);\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</span></p>', 1, 1, '2022-01-14 13:56:55', '2022-01-24 10:39:00', 0),
 (19, 2, 'testcontri2', '<p>erdhfn</p>', '<p>vedc</p>', 1, 1, '2022-01-17 14:39:58', '2022-01-24 13:30:30', 0),
@@ -58,8 +58,7 @@ INSERT INTO `actualite` (`id_actu`, `id_cat`, `titre`, `accroche`, `texte`, `val
 (23, 2, 'connectÃ©', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</span></p>', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></p>', 1, 1, '2022-01-24 13:34:25', '2022-01-25 16:08:39', 1),
 (24, 3, 'non connectÃ©', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquav</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></p>', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></p>', 1, 1, '2022-01-24 14:38:35', '2022-01-25 16:17:06', 0),
 (25, 3, 'executif', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></p>', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></p>', 1, 1, '2022-01-24 14:39:20', '2022-01-25 16:16:47', 4),
-(26, 3, 'testuser3', '<p>test</p>', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></p>', 1, 1, '2022-01-24 14:40:00', '2022-01-25 16:06:19', 3),
-(27, 2, 'testuser2', '<p>test</p>', '<p>test</p>', 1, 1, '2022-01-25 15:28:18', '2022-01-25 16:06:10', 2);
+(26, 3, 'testuser3', '<p>test</p>', '<p><span style=\"color: rgb(17, 17, 17); font-family: \"Source Sans Pro\", sans-serif; font-size: 14px;\">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</span></p>', 1, 1, '2022-01-24 14:40:00', '2022-01-25 16:06:19', 3);
 
 -- --------------------------------------------------------
 
@@ -88,8 +87,7 @@ CREATE TABLE IF NOT EXISTS `adminusers` (
 
 INSERT INTO `adminusers` (`id_admin`, `nom`, `prenom`, `tel`, `email`, `passwords`, `recup`, `photo`, `couleur`, `token`) VALUES
 (23, 'bove', 'kylian', '0123654789', 'login@gm.fr', '$2y$10$w16AFDO0wHvKFVsmdSLoGujf2zlwrEP2ryeLddt1WJw/xflor7a.G', NULL, 'DSCN3326.JPG', NULL, NULL),
-(19, 'bove', 'kyliantest', '0123654789', 'kyliancouleur@gm.fr', '$2y$10$NXUaQZnXkq8mnHks8M8eb.su/r26DVx9uS/1DoMQRt58Vr/meHScy', NULL, NULL, '#FF0000', NULL),
-(26, 'bove', 'kylian', '0123654789', 'kylian@gm.fr', '$2y$10$/dLEaxXxRFI6VtJjstbfNeumBsN6nktuBWPI/KVW0Op14CLLjYXr6', NULL, 'DSCN3326.JPG', '#007DFF', NULL);
+(26, 'bove', 'kylian', '0123654789', 'kylian@gm.fr', '$2y$10$/dLEaxXxRFI6VtJjstbfNeumBsN6nktuBWPI/KVW0Op14CLLjYXr6', NULL, 'DSCN3326.JPG', '#007DFF', '733978006277c73ae4cc64.42980375');
 
 -- --------------------------------------------------------
 
@@ -106,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `audio` (
   `publier` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_audio`),
   KEY `I_FK_AUDIO_ACTUALITE` (`id_actu`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `audio`
@@ -114,7 +112,8 @@ CREATE TABLE IF NOT EXISTS `audio` (
 
 INSERT INTO `audio` (`id_audio`, `id_actu`, `titre`, `fichier`, `publier`) VALUES
 (4, 15, 'test audio', '15-L\'Angleterre fait une pub anti-Afghans - Tanguy Pastureau maltraite l\'info.mp3', 1),
-(3, 15, 'test', '5-Soprano - Le Coach feat. Vincenzo (Clip officiel).mp3', 1);
+(3, 15, 'test', '5-Soprano - Le Coach feat. Vincenzo (Clip officiel).mp3', 1),
+(6, 24, 'test', '24-5-Soprano - Le Coach feat. Vincenzo (Clip officiel).mp3', 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `prenom` varchar(255) NOT NULL,
   `tel` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id_contact`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `contact`
@@ -223,7 +222,12 @@ INSERT INTO `contact` (`id_contact`, `email`, `message`, `nom`, `prenom`, `tel`)
 (4, 'contact@gm.fr', 'test', 'bove', 'kylian', ''),
 (6, 'kylian@gm.fr', 'dr', 'bove', 'kylian', '0123654789'),
 (7, 'kylian@gm.fr', 'azerty', 'bove', 'kylian', '0123654789'),
-(8, 'kylian@gm.fr', 'azery', 'bove', 'kylian', '0123654789');
+(8, 'kylian@gm.fr', 'azery', 'bove', 'kylian', '0123654789'),
+(9, 'kylianbove@sfr.fr', 'tttttttt', 'Bove', 'Kylian', '0601712205'),
+(10, 'kylianbove@sfr.fr', '\'', 'Bove', 'Kylian', '0601712205'),
+(11, 'kikibove@gmail.com', 'test de mail', 'Bove', 'Kylian', '0601712205'),
+(12, 'kikibove@gmail.com', 'test ', 'Bove', 'Kylian', '0601712205'),
+(13, 'test@gm.fr', 'test', 'tets', 'test2', '0123654789');
 
 -- --------------------------------------------------------
 
@@ -254,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `contributeur` (
 INSERT INTO `contributeur` (`id_contri`, `nom`, `prenom`, `tel`, `email`, `passwords`, `recup`, `photo`, `couleur`, `actif`, `token`) VALUES
 (2, 'tets', 'test2', '0123654789', 'test@gm.fr', '$2y$10$JnEnevx4fhDnH9rCZlWds.sSRd3IfgSmxyhvgB0YCUm8SFqXCBgTe', NULL, NULL, NULL, 1, NULL),
 (5, 'bove', 'kylian', '0123654789', 'kylian3@gm.fr', '$2y$10$uojj.HF.P/sT1JZQ6GKOZOWbNCpFT1.zt8f1diILwNBd12Vmlue1C', NULL, NULL, NULL, 0, NULL),
-(13, 'bove', 'kylian', '0123654789', 'contri@gm.fr', '$2y$10$8SQqDfX.6zO.4bvzZUN0geWnBDSjGIaFH.OHC1OZObW2kuBn3JHgW', NULL, 'DSCN3325.JPG', '#600000', 0, NULL),
+(13, 'bove', 'kylian', '0123654789', 'contri@gm.fr', '$2y$10$8SQqDfX.6zO.4bvzZUN0geWnBDSjGIaFH.OHC1OZObW2kuBn3JHgW', NULL, 'DSCN3325.JPG', '#600000', 1, NULL),
 (7, 'bove', 'kylian', '0123654789', 'kylian36@gm.fr', '$2y$10$IjYOA5pG5JhnTJQMWWy05eeGJb0cTHQbI0IHCCMswqtbz.1yUmbPq', NULL, NULL, '#CCA1A1', 0, NULL),
 (9, 'bove', 'kylian', '0123654789', 'kyliantestphoto@gm.fr', '$2y$10$sN61cAXKDVp49kgWVvtxeOmIxL9qzVkih.jlzStun/jjlPc7Oauk.', NULL, 'DSCN3326.JPG', '#FF0068', 0, NULL),
 (10, 'bove', 'kylian', '0123654789', 'kyliantestcouleur@gm.fr', '$2y$10$1QYBTfTm0oaimfbFM46vn.jwSIcvY2TwM1ssLgc7ew0XIKM1IbsHm', NULL, NULL, '#00FF0D', 0, NULL),
@@ -273,23 +277,25 @@ CREATE TABLE IF NOT EXISTS `contribution` (
   `titre` char(255) NOT NULL,
   `details` longtext NOT NULL,
   `valider` tinyint(1) DEFAULT NULL,
+  `valider_par` varchar(255) DEFAULT NULL,
   `date_validation` datetime DEFAULT NULL,
   PRIMARY KEY (`id_contribution`),
   KEY `I_FK_CONTRIBUTION_USERS` (`id_users`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `contribution`
 --
 
-INSERT INTO `contribution` (`id_contribution`, `id_users`, `titre`, `details`, `valider`, `date_validation`) VALUES
-(1, 49, 'testcontri', '<p>test</p>', 1, '2022-01-14 14:04:08'),
-(3, 49, 'test2', '<p>test</p>', 0, NULL),
-(4, 49, 'test', '<p>test date</p>', 1, '2022-01-13 16:13:07'),
-(5, 49, 'testdate', '<p>test</p>', 1, '2022-01-13 13:50:17'),
-(6, 60, 'test', 'azerty', 0, NULL),
-(7, 81, 'demande de participation', 'je souhaite participer Ã  la rÃ©union du 30/01/2021', NULL, NULL),
-(8, 81, 'demande de participation', 'je souhaite participer Ã  la rÃ©union du 30/01/2021', NULL, NULL);
+INSERT INTO `contribution` (`id_contribution`, `id_users`, `titre`, `details`, `valider`, `valider_par`, `date_validation`) VALUES
+(1, 49, 'testcontri', '<p>test</p>', 1, '', '2022-01-14 14:04:08'),
+(3, 49, 'test2', '<p>test</p>', 1, 'bove kylian', '2022-05-12 14:47:33'),
+(4, 49, 'test', '<p>test date</p>', 1, '', '2022-01-13 16:13:07'),
+(5, 49, 'testdate', '<p>test</p>', 1, '', '2022-01-13 13:50:17'),
+(6, 60, 'test', 'azerty', 1, 'bove kylian', '2022-05-12 14:47:37'),
+(7, 81, 'demande de participation', 'je souhaite participer Ã  la rÃ©union du 30/01/2021', 1, 'bove kylian', '2022-03-17 14:37:37'),
+(8, 81, 'demande de participation', 'je souhaite participer Ã  la rÃ©union du 30/01/2021', 1, 'bove kylian', '2022-03-17 14:37:33'),
+(12, 102, 'test', '10', 1, 'bove kylian', '2022-03-17 15:11:39');
 
 -- --------------------------------------------------------
 
@@ -306,7 +312,7 @@ CREATE TABLE IF NOT EXISTS `cr_audio` (
   `publier` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_audio`),
   KEY `I_FK_AUDIO_COMPTE_RENDU` (`id_cr`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `cr_audio`
@@ -314,7 +320,8 @@ CREATE TABLE IF NOT EXISTS `cr_audio` (
 
 INSERT INTO `cr_audio` (`id_audio`, `id_cr`, `titre`, `fichier`, `publier`) VALUES
 (4, 2, 'test', '2-L\'Angleterre fait une pub anti-Afghans - Tanguy Pastureau maltraite l\'info.mp3', 1),
-(2, 2, 'test', '2-Soprano - Le Coach feat. Vincenzo (Clip officiel).mp3', 1);
+(2, 2, 'test', '2-Soprano - Le Coach feat. Vincenzo (Clip officiel).mp3', 1),
+(5, 12, 'test', '12-5-Soprano - Le Coach feat. Vincenzo (Clip officiel).mp3', 1);
 
 -- --------------------------------------------------------
 
@@ -381,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `cr_piecesjointes` (
   `publier` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_piecejointe`),
   KEY `I_FK_PIECESJOINTES_COMPTE_RENDU` (`id_cr`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `cr_piecesjointes`
@@ -390,7 +397,8 @@ CREATE TABLE IF NOT EXISTS `cr_piecesjointes` (
 INSERT INTO `cr_piecesjointes` (`id_piecejointe`, `id_cr`, `titre`, `fichier`, `publier`) VALUES
 (1, 2, 'test2', '2-Classeur1.xlsx', 1),
 (3, 2, 'test', '2-test.doc', 1),
-(4, 2, 'test2', '2-convention_stage_BTSSIO_2021-2022 .pdf', 1);
+(4, 2, 'test2', '2-test.pdf', 1),
+(5, 12, 'test', '12-test.doc', 1);
 
 -- --------------------------------------------------------
 
@@ -407,16 +415,17 @@ CREATE TABLE IF NOT EXISTS `cr_video` (
   `publier` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_video`),
   KEY `I_FK_VIDEO_COMPTE_RENDU` (`id_cr`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `cr_video`
 --
 
 INSERT INTO `cr_video` (`id_video`, `id_cr`, `titre`, `fichier`, `publier`) VALUES
-(1, 2, 'testvideo2', '2-tik5_x264.mp4', 1),
+(1, 2, 'testvideo2', '2-tirage_x264.mp4', 1),
 (2, 2, 'testvideo', '2-tirage_x264.mp4', 1),
-(4, 7, 'test', '7-tirage_x264.mp4', 0);
+(4, 7, 'test', '7-tirage_x264.mp4', 0),
+(5, 12, 'test', '12-tik5_x264.mp4', 1);
 
 -- --------------------------------------------------------
 
@@ -433,7 +442,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `publier` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_img`),
   KEY `I_FK_IMAGE_ACTUALITE` (`id_actu`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `image`
@@ -443,7 +452,9 @@ INSERT INTO `image` (`id_img`, `id_actu`, `titre`, `fichier`, `publier`) VALUES
 (4, 17, 'test2', '13-DSCN3539.JPG', 1),
 (5, 15, 'image2', '5-DSCN3536.JPG', 1),
 (3, 15, 'test', '15-DSCN3319.JPG', 1),
-(6, 15, 'test2', '15-DSCN3326.JPG', 1);
+(6, 15, 'test2', '15-DSCN3326.JPG', 1),
+(7, 24, 'test', '24-DSCN3543.JPG', 1),
+(8, 24, 'test2', '24-DSCN3542.JPG', 1);
 
 -- --------------------------------------------------------
 
@@ -482,7 +493,7 @@ CREATE TABLE IF NOT EXISTS `infosutiles` (
 --
 
 INSERT INTO `infosutiles` (`id`, `nom`, `logo`, `adresse`, `cp`, `ville`, `pays`, `tel`, `fax`, `email`, `facebook`, `twitter`, `youtube`, `pinterest`, `instagram`, `rss`, `accroche`, `googlemap`, `seoDescription`, `seoKeywords`, `info_bienvenue`) VALUES
-(1, 'O18Market', NULL, '6 Rue MAURICE ROY', '18000', 'BOURGES', NULL, '0622073045', NULL, 'info@oslab-france.com', '', '', '', '', '', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s...', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d84184.47051848588!2d1.2878424539475288!3d48.74819132842936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e1551ee0688e79%3A0x40dc8d7053981f0!2s28100%20Dreux!5e0!3m2!1sfr!2sfr!4v1643208123814!5m2!1sfr!2sfr', 'Ici la description', 'keyword1, keyword2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.');
+(1, 'MES', 'mes.png', '6 Rue MAURICE ROY', '18000', 'BOURGES', NULL, '0622073045', NULL, 'info@oslab-france.com', '', '', '', '', '', '', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s...', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d84184.47051848588!2d1.2878424539475288!3d48.74819132842936!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e1551ee0688e79%3A0x40dc8d7053981f0!2s28100%20Dreux!5e0!3m2!1sfr!2sfr!4v1643208123814!5m2!1sfr!2sfr', 'Ici la description', 'keyword1, keyword2', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.');
 
 -- --------------------------------------------------------
 
@@ -511,7 +522,6 @@ CREATE TABLE IF NOT EXISTS `moderateur` (
 --
 
 INSERT INTO `moderateur` (`id_mod`, `nom`, `prenom`, `tel`, `email`, `passwords`, `recup`, `photo`, `couleur`, `actif`, `token`) VALUES
-(6, 'bove', 'kylian', '0123654789', 'couleurmod@gm.fr', '$2y$10$upDnDrmhwulJr6WER94UB.qzXeyjA9cJ9yV4VGauQbkIOkIqJOsfO', NULL, 'DSCN3337.JPG', '#FF0000', 0, NULL),
 (8, 'bove', 'kylian', '0123654789', 'kylianmod@gm.fr', '$2y$10$2srm0MEpPoAxWOhwEtflO.SRutX13v6Omkd37NXiAZA97Oh27VD4S', NULL, NULL, '#374068', 1, NULL);
 
 -- --------------------------------------------------------
@@ -806,7 +816,7 @@ CREATE TABLE IF NOT EXISTS `piecesjointes` (
   `publier` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_piecejointe`),
   KEY `I_FK_PIECESJOINTES_ACTUALITE` (`id_actu`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `piecesjointes`
@@ -816,8 +826,9 @@ INSERT INTO `piecesjointes` (`id_piecejointe`, `id_actu`, `titre`, `fichier`, `p
 (3, 13, 'test3', '13-test.xls', 1),
 (11, 15, 'test', '15-Classeur1.xlsx', 1),
 (12, 17, 'test', '13-test.doc', 1),
-(20, 15, 'test', '13-Description du projet Ã  rÃ©aliser.docx', 1),
-(18, 15, 'testactu', '5-convention_stage_BTSSIO_2021-2022 .pdf', 1);
+(20, 15, 'test', '15-test.doc', 1),
+(18, 15, 'testactu', '15-test.pdf', 1),
+(24, 24, 'fichier pdf', '24-test.pdf', 1);
 
 -- --------------------------------------------------------
 
@@ -837,7 +848,7 @@ CREATE TABLE IF NOT EXISTS `planning` (
   `annuler` tinyint(1) DEFAULT NULL,
   `affichage` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_planning`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `planning`
@@ -851,7 +862,8 @@ INSERT INTO `planning` (`id_planning`, `titre`, `description`, `couleur`, `date_
 (8, 'test', '<p>sdfghj</p>', '#FFA000', '2022-01-15 13:00:00', '2022-02-09 14:00:00', 1, 0, '1'),
 (9, 'test', '<p>dhf,</p>', '#00FF4D', '2022-02-17 15:00:00', '2022-02-28 16:00:00', 1, 0, '4'),
 (10, 'test', '<p>test</p>', '#FFA000', '2022-01-21 15:37:00', '2022-01-07 14:00:00', 1, 0, '3'),
-(11, 'test', '<p>gfb&nbsp;</p>', '#FFA000', '2022-01-20 16:26:00', '2022-01-21 16:26:00', 0, NULL, '0');
+(11, 'test', '<p>gfb&nbsp;</p>', '#FFA000', '2022-01-20 16:26:00', '2022-01-21 16:26:00', 0, NULL, '0'),
+(15, 'examen', '<p>bts</p>', '#FFA000', '2022-05-15 14:51:00', '2022-05-17 14:51:00', 1, 1, '1');
 
 -- --------------------------------------------------------
 
@@ -872,6 +884,26 @@ CREATE TABLE IF NOT EXISTS `redacteur` (
   `type` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_redacteur`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `rgpd`
+--
+
+DROP TABLE IF EXISTS `rgpd`;
+CREATE TABLE IF NOT EXISTS `rgpd` (
+  `id` int(10) NOT NULL,
+  `titre` varchar(500) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `texte` longtext CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `rgpd`
+--
+
+INSERT INTO `rgpd` (`id`, `titre`, `texte`) VALUES
+(1, 'Mentions LÃ©gales - RGPD', '<div>\r\n<h3><b>POLITIQUE DE CONFIDENTIALITÃ‰</b></h3></div><div><div><div data-exp=\"simple2\"><div><div><p> <br>www.monespacesalarie-cse.com <br>CSE APF Eure <br> <br>Type de site&nbsp;: Portail d\'Ã©change</p>\r\n</div>\r\n<div>\r\n<p><h4>Le but de cette politique de confidentialitÃ© </h4> <br>Le but de cette politique de confidentialitÃ© est d\'informer les utilisateurs de notre site des donnÃ©es personnelles que nous recueillerons ainsi que les informations suivantes, le cas Ã©chÃ©ant :</p>\r\n<ol start=\"1\">\r\n<li value=\"1\">Les donnÃ©es personnelles que nous recueillerons </li>\r\n<li value=\"2\">Lâ€™utilisation des donnÃ©es recueillies </li>\r\n<li value=\"3\">Qui a accÃ¨s aux donnÃ©es recueillies </li>\r\n<li value=\"4\">Les droits des utilisateurs du site </li>\r\n<li value=\"5\">La politique de cookies du site </li>\r\n</ol>\r\n<p>Cette politique de confidentialitÃ© fonctionne parallÃ¨lement aux conditions gÃ©nÃ©rales dâ€™utilisation de notre site.</p>\r\n</div>\r\n<div>\r\n<h4><b>Lois applicables</b></h4>\r\n<p>ConformÃ©ment au RÃ¨glement gÃ©nÃ©ral sur la protection des donnÃ©es (RGPD), cette politique de confidentialitÃ© est conforme aux rÃ¨glements suivants. <br> <br></p><h5><b>Les donnÃ©es Ã  caractÃ¨re personnel doivent Ãªtre :</b></h5><p></p>\r\n<ol start=\"1\">\r\n<li value=\"1\">traitÃ©es de maniÃ¨re licite, loyale et transparente au regard de la personne concernÃ©e (licÃ©itÃ©, loyautÃ©, transparence) ; </li>\r\n<li value=\"2\">collectÃ©es pour des finalitÃ©s dÃ©terminÃ©es, explicites et lÃ©gitimes, et ne pas Ãªtre traitÃ©es ultÃ©rieurement d\'une maniÃ¨re incompatible avec ces finalitÃ©s; le traitement ultÃ©rieur Ã  des fins archivistiques dans l\'intÃ©rÃªt public, Ã  des fins de recherche scientifique ou historique ou Ã  des fins statistiques n\'est pas considÃ©rÃ©, conformÃ©ment Ã  l\'article 89, paragraphe 1, comme incompatible avec les finalitÃ©s initiales (limitation des finalitÃ©s) ; </li>\r\n<li value=\"3\">adÃ©quates, pertinentes et limitÃ©es Ã  ce qui est nÃ©cessaire au regard des finalitÃ©s pour lesquelles elles sont traitÃ©es (minimisation des donnÃ©es) ; </li>\r\n<li value=\"4\">exactes et, si nÃ©cessaire, tenues Ã  jour; toutes les mesures raisonnables doivent Ãªtre prises pour que les donnÃ©es Ã  caractÃ¨re personnel qui sont inexactes, eu Ã©gard aux finalitÃ©s pour lesquelles elles sont traitÃ©es, soient effacÃ©es ou rectifiÃ©es sans tarder (exactitude) ; </li>\r\n<li value=\"5\">conservÃ©es sous une forme permettant l\'identification des personnes concernÃ©es pendant une durÃ©e n\'excÃ©dant pas celle nÃ©cessaire au regard des finalitÃ©s pour lesquelles elles sont traitÃ©es; les donnÃ©es Ã  caractÃ¨re personnel peuvent Ãªtre conservÃ©es pour des durÃ©es plus longues dans la mesure oÃ¹ elles seront traitÃ©es exclusivement Ã  des fins archivistiques dans l\'intÃ©rÃªt public, Ã  des fins de recherche scientifique ou historique ou Ã  des fins statistiques conformÃ©ment Ã  l\'article 89, paragraphe 1, pour autant que soient mises en Å“uvre les mesures techniques et organisationnelles appropriÃ©es requises par le rÃ¨glement afin de garantir les droits et libertÃ©s de la personne concernÃ©e (limitation de la conservation) ; </li>\r\n<li value=\"6\">traitÃ©es de faÃ§on Ã  garantir une sÃ©curitÃ© appropriÃ©e des donnÃ©es Ã  caractÃ¨re personnel, y compris la protection contre le traitement non autorisÃ© ou illicite et contre la perte, la destruction ou les dÃ©gÃ¢ts d\'origine accidentelle, Ã  l\'aide de mesures techniques ou organisationnelles appropriÃ©es (intÃ©gritÃ© et confidentialitÃ©). <br> </li>\r\n</ol>\r\n<h5><b>Le traitement n\'est licite que si, et dans la mesure oÃ¹, au moins une des conditions suivantes est remplie :</b></h5>\r\n<ol start=\"1\">\r\n<li value=\"1\">la personne concernÃ©e a consenti au traitement de ses donnÃ©es Ã  caractÃ¨re personnel pour une ou plusieurs finalitÃ©s spÃ©cifiques ; </li>\r\n<li value=\"2\">le traitement est nÃ©cessaire Ã  l\'exÃ©cution d\'un contrat auquel la personne concernÃ©e est partie ou Ã  l\'exÃ©cution de mesures prÃ©contractuelles prises Ã  la demande de celle-ci ; </li>\r\n<li value=\"3\">le traitement est nÃ©cessaire au respect d\'une obligation lÃ©gale Ã  laquelle le responsable du traitement est soumis ; </li>\r\n<li value=\"4\">le traitement est nÃ©cessaire Ã  la sauvegarde des intÃ©rÃªts vitaux de la personne concernÃ©e ou d\'une autre personne physique ; </li>\r\n<li value=\"5\">le traitement est nÃ©cessaire Ã  l\'exÃ©cution d\'une mission d\'intÃ©rÃªt public ou relevant de l\'exercice de l\'autoritÃ© publique dont est investi le responsable du traitement ; </li>\r\n<li value=\"6\">le traitement est nÃ©cessaire aux fins des intÃ©rÃªts lÃ©gitimes poursuivis par le responsable du traitement ou par un tiers, Ã  moins que ne prÃ©valent les intÃ©rÃªts ou les libertÃ©s et droits fondamentaux de la personne concernÃ©e qui exigent une protection des donnÃ©es Ã  caractÃ¨re personnel, notamment lorsque la personne concernÃ©e est un enfant. </li>\r\n</ol>\r\n<p>Pour les rÃ©sidents de lâ€™Ã‰tat de Californie, cette politique de confidentialitÃ© vise Ã  se conformer Ã  la California Consumer Privacy Act (CCPA). Sâ€™il y a des incohÃ©rences entre ce document et la CCPA, la lÃ©gislation de lâ€™Ã‰tat sâ€™appliquera. Si nous constatons des incohÃ©rences, nous modifierons notre politique pour nous conformer Ã  la loi pertinente.</p>\r\n</div>\r\n<div>\r\n<p></p><h4><b>Consentement </b></h4> <br><h5>Les utilisateurs conviennent quâ€™en utilisant notre site, ils consentent Ã  :</h5><p></p>\r\n<ol start=\"1\">\r\n<li value=\"1\">les conditions Ã©noncÃ©es dans la prÃ©sente politique de confidentialitÃ© et </li>\r\n<li value=\"2\">la collecte, lâ€™utilisation et la conservation des donnÃ©es Ã©numÃ©rÃ©es dans la prÃ©sente politique. </li>\r\n</ol>\r\n</div>\r\n<div>\r\n<p>DonnÃ©es personnelles que nous collectons</p>\r\n<div>\r\n<div>\r\n<p>DonnÃ©es collectÃ©es automatiquement</p>\r\n<p>Nous ne collectons aucune donnÃ©e automatiquement sur notre site.</p>\r\n</div>\r\n<div>\r\n<p>DonnÃ©es recueillies de faÃ§on non automatique</p>\r\n<h5>Nous pouvons Ã©galement collecter les donnÃ©es suivantes lorsque vous effectuez certaines fonctions sur notre site&nbsp;:</h5>\r\n<ol start=\"1\">\r\n<li value=\"1\">PrÃ©nom et nom </li>\r\n<li value=\"2\">Email </li>\r\n<li value=\"3\">NumÃ©ro de tÃ©lÃ©phone </li>\r\n<li value=\"4\">Domicile </li>\r\n</ol>\r\n<h5>Ces donnÃ©es peuvent Ãªtre recueillies au moyen des mÃ©thodes suivantes&nbsp;:</h5>\r\n<p>Enregistrement d\'un compte utilisateur</p>\r\n<p>Formulaire de contact</p>\r\n</div>\r\n<p>Veuillez noter que nous ne collectons que les donnÃ©es qui nous aident Ã  atteindre lâ€™objectif Ã©noncÃ© dans cette politique de confidentialitÃ©. Nous ne recueillerons pas de donnÃ©es supplÃ©mentaires sans vous en informer au prÃ©alable.</p>\r\n</div>\r\n</div>\r\n<div>\r\n<p></p><h4>Comment nous utilisons les donnÃ©es personnelles </h4> <br>Les donnÃ©es personnelles recueillies sur notre site seront utilisÃ©es uniquement aux fins prÃ©cisÃ©es dans la prÃ©sente politique ou indiquÃ©es sur les pages pertinentes de notre site. Nous nâ€™utiliserons pas vos donnÃ©es au-delÃ  de ce que nous divulguerons.<p></p>\r\n<div>\r\n<h5>Les donnÃ©es que nous recueillons lorsque lâ€™utilisateur exÃ©cute certaines fonctions peuvent Ãªtre utilisÃ©es aux fins suivantes&nbsp;:</h5>\r\n<ol start=\"1\">\r\n<li value=\"1\">Identification des utilisateurs par les administrateurs du site </li>\r\n</ol>\r\n</div>\r\n</div>\r\n<div>\r\n<p>Avec qui nous partageons les donnÃ©es personnelles</p>\r\n<div>\r\n<p></p><h4><b>EmployÃ©s </b></h4>Nous pouvons divulguer Ã  tout membre de notre organisation les donnÃ©es utilisateur dont il a raisonnablement besoin pour rÃ©aliser les objectifs Ã©noncÃ©s dans la prÃ©sente politique.<p></p>\r\n</div>\r\n<div>\r\n<p></p><h4>Tierces parties </h4>Nous pouvons partager les donnÃ©es utilisateur avec les tiers suivants&nbsp;:<p></p>\r\n<ol start=\"1\">\r\n<li value=\"1\">__________ </li>\r\n</ol>\r\n<p>Nous pouvons partager les donnÃ©es utilisateur avec des tiers aux fins suivantes&nbsp;:</p>\r\n<ol start=\"1\">\r\n<li value=\"1\">__________ </li>\r\n</ol>\r\n<p>Les tiers ne seront pas en mesure dâ€™accÃ©der aux donnÃ©es des utilisateurs au-delÃ  de ce qui est raisonnablement nÃ©cessaire pour atteindre lâ€™objectif donnÃ©.</p>\r\n</div>\r\n<div>\r\n<p></p><h4>Autres divulgations </h4>Nous nous engageons Ã  ne pas vendre ou partager vos donnÃ©es avec des tiers, sauf dans les cas suivants&nbsp;:<p></p>\r\n<ol start=\"1\">\r\n<li value=\"1\">si la loi l\'exige </li>\r\n<li value=\"2\">si elle est requise pour toute procÃ©dure judiciaire </li>\r\n<li value=\"3\">pour prouver ou protÃ©ger nos droits lÃ©gaux </li>\r\n<li value=\"4\">Ã  des acheteurs ou des acheteurs potentiels de cette sociÃ©tÃ© dans le cas oÃ¹ nous cherchons Ã  la vendre la sociÃ©tÃ© </li>\r\n</ol>\r\n<p>Si vous suivez des hyperliens de notre site vers un autre site, veuillez noter que nous ne sommes pas responsables et nâ€™avons pas de contrÃ´le sur leurs politiques et pratiques de confidentialitÃ©.</p>\r\n</div>\r\n</div>\r\n<div>\r\n<p></p><h4>Combien de temps nous stockons les donnÃ©es personnelles </h4> <br>Nous ne conservons pas les donnÃ©es des utilisateurs au-delÃ  de ce qui est nÃ©cessaire pour atteindre les fins pour lesquelles elles sont recueillies.<p></p>\r\n</div>\r\n<div>\r\n<p></p><h4>Comment nous protÃ©geons vos donnÃ©es personnelles </h4> <br>Les donnÃ©es utilisateurs (adresse, tÃ©lÃ©phone, email...) ne sont accessibles qu\'aux administrateurs du site et par l\'utilisateur du site. <br>Toutes ces informations sont confidentielles, et l\'administrateur ne peut que les consulter. Aucun export, n\'est possible. <br>De plus le site est protÃ©gÃ© par certificat SSL, et les donnÃ©es transmises via un canal sÃ©curisÃ© <br> <br>Alors que nous prenons toutes les prÃ©cautions raisonnables pour nous assurer que nos donnÃ©es dâ€™utilisateur sont sÃ©curisÃ©es et que les utilisateurs sont protÃ©gÃ©s, il reste toujours du risque de prÃ©judice. Lâ€™Internet en sa totalitÃ© peut Ãªtre, parfois, peu sÃ»r et donc nous sommes incapables de garantir la sÃ©curitÃ© des donnÃ©es des utilisateurs au-delÃ  de ce qui est raisonnablement pratique.<p></p>\r\n</div>\r\n<div>\r\n<h4>Mineurs</h4>\r\n<p>Le RGPD prÃ©cise que les personnes de moins de 15 ans sont considÃ©rÃ©es comme des mineurs aux fins de la collecte de donnÃ©es. Les mineurs doivent avoir le consentement dâ€™un reprÃ©sentant lÃ©gal pour que leurs donnÃ©es soient recueillies, traitÃ©es et utilisÃ©es.</p>\r\n</div>\r\n<div>\r\n<h4>Vos droits en tant quâ€™utilisateur</h4>\r\n<div>\r\n<p>En vertu du RGPD, les utilisateurs ont les droits suivants en tant que personnes concernÃ©es :</p>\r\n<ol start=\"1\">\r\n<li value=\"1\">droit dâ€™accÃ¨s </li>\r\n<li value=\"2\">droit de rectification </li>\r\n<li value=\"3\">droit Ã  lâ€™effacement </li>\r\n<li value=\"4\">droit de restreindre le traitement </li>\r\n<li value=\"5\">droit Ã  la portabilitÃ© des donnÃ©es </li>\r\n<li value=\"6\">droit d\'objection </li>\r\n</ol>\r\n<p>Vous trouverez de plus amples informations sur ces droits au chapitre 3 (art 12-23) du RGPD.</p>\r\n</div>\r\n</div>\r\n<div>\r\n<p></p><h4>Comment modifier, supprimer ou contester les donnÃ©es recueillies </h4> <br>Si vous souhaitez que vos renseignements soient supprimÃ©s ou modifiÃ©s dâ€™une faÃ§on ou dâ€™une autre, veuillez communiquer avec notre agent de protection de la vie privÃ©e ici :<p></p>\r\n<p>Lucas SCHNEKENBURGER <br>9Bis Rue du Puits CarrÃ©, 27000, Evreux <br>altameos2012@gmail.com <br>06 75 58 61 93</p>\r\n</div>\r\n<div>\r\n<h4>Dispositions supplÃ©mentaires</h4>\r\n<p>___________________________________________________________ <br>___________________________________________________________ <br>___________________________________________________________ <br>___________________________________________________________</p>\r\n</div>\r\n<div>\r\n<h4>Modifications</h4>\r\n<p>Cette politique de confidentialitÃ© peut Ãªtre modifiÃ©e Ã  lâ€™occasion afin de maintenir la conformitÃ© avec la loi et de tenir compte de tout changement Ã  notre processus de collecte de donnÃ©es. Nous recommandons Ã  nos utilisateurs de vÃ©rifier notre politique de temps Ã  autre pour sâ€™assurer quâ€™ils soient informÃ©s de toute mise Ã  jour. Au besoin, nous pouvons informer les utilisateurs par courriel des changements apportÃ©s Ã  cette politique.</p>\r\n</div>\r\n<div>\r\n<h4>Contact</h4>\r\n<p>Si vous avez des questions Ã  nous poser, nâ€™hÃ©sitez pas Ã  communiquer avec nous en utilisant ce qui suit&nbsp;: <br>06 75 58 61 93 <br>altameos2012@gmail.com <br>9Bis Rue du Puits CarrÃ©, 27000, Evreux</p>\r\n</div>\r\n<p><br><b> Date dâ€™entrÃ©e en vigueur&nbsp;: le 16 fÃ©vrier 2022</b></p></div>\r\n</div>\r\n</div>\r\n</div>\r\n');
 
 -- --------------------------------------------------------
 
@@ -901,21 +933,21 @@ CREATE TABLE IF NOT EXISTS `users` (
   `actif` tinyint(1) DEFAULT NULL,
   `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=115 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `tel`, `email`, `passwords`, `recup`, `adresse`, `cp`, `ville`, `pays`, `typeUser`, `photo`, `code`, `datedebut`, `datefin`, `couleur`, `actif`, `token`) VALUES
-(49, 'Kylian', 'BOVE', '9874563210', 'kylianbove26@sfr.fr', '$2y$10$uhwEzekzXMQqRwm4Yjpp7edGpCNULo9qGiEOgkBdsIG2JJkFcA9G6', NULL, '11 allÃ©e du vieux poirier', '28500', 'st gemme moronval', 'france', 1, NULL, 847646, NULL, NULL, NULL, 1, NULL),
-(81, 'bove', 'kylian', '0123654789', 'inscription@gm.fr', '$2y$10$cjKOrdv1gkJh8gizW8UnLO93UhwQd/94n3GDNvGan1scRCbhHefKS', NULL, 'test', '28100', 'dreux', 'Argentine', 3, NULL, NULL, NULL, NULL, '#00199A', 1, '131772799261f2cf512bbc72.36543880'),
+(49, 'Kylian', 'BOVE', '9874563210', 'kylianbove26@sfr.fr', '$2y$10$uhwEzekzXMQqRwm4Yjpp7edGpCNULo9qGiEOgkBdsIG2JJkFcA9G6', NULL, '11 allÃ©e du vieux poirier', '28500', 'st gemme moronval', 'france', 1, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+(81, 'bove', 'kylian', '0123654789', 'inscription@gm.fr', '$2y$10$cjKOrdv1gkJh8gizW8UnLO93UhwQd/94n3GDNvGan1scRCbhHefKS', NULL, 'test', '28100', 'dreux', 'Argentine', 3, NULL, NULL, NULL, NULL, '#FF0000', 1, NULL),
 (55, 'bove', 'kylian', '0123654789', 'kylian7@gm.fr', '$2y$10$ibcBylomJfxEXmdkiiKVXuzUY61zd56/bwC5UD.i9ndw/BQ46oE6K', NULL, 'test', '28100', 'dreux', 'Luxembourg', 3, NULL, NULL, NULL, NULL, NULL, 0, NULL),
 (54, 'bove', 'kylian', '0123654789', 'kylian4@gm.fr', '$2y$10$BHqv2cL2WLvwd.GU4F13MOHuRiRa14HucFP8n77ki7gtE8JHPPSrm', NULL, 'test', '28100', 'dreux', 'france', 1, NULL, NULL, NULL, NULL, NULL, 1, NULL),
 (53, 'tets', 'test2', '0123654789', 'test2@gm.fr', '$2y$10$OlyYrQCgWCKXoZvoDSjZnukOdpPsfxZrGzc1ia3Gf4sAWIPDnjPcy', NULL, 'test', '28100', 'dreux', 'france', 1, NULL, NULL, NULL, NULL, NULL, 0, NULL),
-(60, 'bove', 'kylian', '0123654789', 'kylianuser@gm.fr', '$2y$10$IVmFhJhTrJJqmtyuwugen.pQrjURowhxBXcuj3N/GrxOLBa9ESdmS', NULL, 'test', '28100', 'dreux', 'france', 2, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+(60, 'bove', 'kylian', '0123654789', 'kylianuser@gm.fr', '$2y$10$IVmFhJhTrJJqmtyuwugen.pQrjURowhxBXcuj3N/GrxOLBa9ESdmS', NULL, 'test', '28100', 'dreux', 'France', 2, NULL, NULL, NULL, NULL, '#000000', 0, NULL),
 (80, 'bove', 'kylian', '0123654789', 'couleur@gm.fr', '$2y$10$/FnJkYx7DVdqRUa5Ff0zTemi.r.euMdmMKysMnFWz0YbfDLLawgk.', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, '#7E8AFF', 0, NULL),
-(82, 'bove', 'kylian', '0123654789', 'kylian2@gm.fr', '$2y$10$S.cWstxDxTsgaXP50kNv4.y4jkcUfZdvedJUNMRmsirsfZnzTbhmW', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, 300345, NULL, NULL, NULL, NULL, NULL),
+(82, 'bove', 'kylian', '0123654789', 'kylian2@gm.fr', '$2y$10$S.cWstxDxTsgaXP50kNv4.y4jkcUfZdvedJUNMRmsirsfZnzTbhmW', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (79, 'tets', 'test2', '0123654789', 'testphoto@gm.fr', '$2y$10$P5Ftab1CiObDfmwMktrhQug5MBaDq06JOHL2Gm5Gppjnv6hWu8dcu', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, '#FF0000', 1, NULL),
 (78, 'bove2', 'kylian', '0123654789', 'phto@gm.fr', '$2y$10$E1Epa.rK9FIMZVS7KQveAuIz/uNsF6N2tt4BPvK2NN4GCoif/6viO', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, 'DSCN3534.JPG', NULL, NULL, NULL, NULL, 1, NULL),
 (75, 'test', 'kylian', '0123654789', 'kylianpays@gm.fr', '$2y$10$ZAjOVR66OK74Ac4GWTGvO.9kJUV6v8.9A.O1yS3ZP0vTIMdKELwOG', NULL, 'test', '28100', 'dreux', 'Autriche', 1, NULL, NULL, NULL, NULL, NULL, 1, NULL),
@@ -924,7 +956,9 @@ INSERT INTO `users` (`id`, `nom`, `prenom`, `tel`, `email`, `passwords`, `recup`
 (90, 'bove', 'kylian', '0123654789', 'kylian258@gm.fr', '$2y$10$EF7sYh277zlrHVUmiinvbe.B7PIu3P8uh4LCUrRvq38.Y7eiyPFUS', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (91, 'bove', 'kylian', '0123654789', 'kylian987456@gm.fr', '$2y$10$QCNAPGsOBpr/CNOZR6mFF.pIbjp8SZ48qtCDosPdn9.gfy6DzLThq', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (92, 'bove', 'kylian', '0123654789', '987456@gm.fr', '$2y$10$3V/ckHpF4GDZfWRU2UkM/OKYuVo/CoWURp4Enl8Bvj6s94.EoSjPq', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(93, 'bove', 'kylian', '0123654789', '5236@gm.fr', '$2y$10$9TmuQrVwfplTsRAPnUR.2uRUhP6amk1WiRx/hCFv/R.Jptb4ROF3e', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(93, 'bove', 'kylian', '0123654789', '5236@gm.fr', '$2y$10$9TmuQrVwfplTsRAPnUR.2uRUhP6amk1WiRx/hCFv/R.Jptb4ROF3e', NULL, 'test', '28100', 'dreux', 'Afghanistan', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(103, 'tets', 'test2', '0123654789', 'test3@gm.fr', '$2y$10$i3lZ6Uade3d7AGg2jpaU/uyL2cDCtTVYI650V5iorvRUOlIndHFF6', NULL, 'test', '28100', 'dreux', 'France', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(114, 'bove', 'kylian', '0123654789', 'kylian123@gm.fr', '$2y$10$Z2nxTqRhtRpRh4GFIpfOMeAfY5r2cxl6DgxhJ.GE7bVA8ZCm7AAEW', NULL, 'test', '28100', 'dreux', 'France', 3, NULL, NULL, NULL, NULL, '#000000', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -941,15 +975,15 @@ CREATE TABLE IF NOT EXISTS `video` (
   `publier` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_video`),
   KEY `I_FK_VIDEO_ACTUALITE` (`id_actu`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `video`
 --
 
 INSERT INTO `video` (`id_video`, `id_actu`, `titre`, `fichier`, `publier`) VALUES
-(22, 15, 'test2', '15-tik5_x264.mp4', 1),
-(16, 15, 'test', '15-tirage_x264.mp4', 1);
+(16, 15, 'test', '15-tirage_x264.mp4', 1),
+(24, 24, 'test', '24-tik5_x264.mp4', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
