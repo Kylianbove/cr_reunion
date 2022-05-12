@@ -22,7 +22,7 @@
   <div class="col-sm-7 col-md-7 col-lg-9 colCentre">
     <div class="row">
     <div class="col-sm-12">
-      <h2><i class="fa-duotone fa-calendar-clock"></i>Agenda de APF Eure</h2>
+      <h2><i class="fa-duotone fa-calendar-clock"></i>Agenda <?php echo $logo['nom']; ?></h2>
       <div class="monthly" id="calendar"></div>
     </div>
 

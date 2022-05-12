@@ -44,8 +44,10 @@
       <div class="agenda">
       <div class="monthly" id="calendar"></div>
       </div>
+    
 
-      <a href="agenda.php" class="linkBar">Agenda détaillé</a>
+            <a href="agenda.php" class="linkBar">Agenda détaillé</a>
+
     </div>
 
     </div>

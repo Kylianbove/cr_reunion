@@ -1,14 +1,15 @@
 <?php
+/*
+	$user ='dbu2434026';
+	$pass ='eZ45Dr98';
+	$connexion = new PDO('mysql:host=db5006438913.hosting-data.io;dbname=dbs5358497', $user, $pass);
+*/
+?>
+<?php
+
 	$user ='root';
 	$pass ='';
 	$connexion = new PDO('mysql:host=localhost;dbname=cr_reunion', $user, $pass);
 
-?>
-<?php /*
-$hostname = "localhost";
-$database = "cr_reunion";
-$username_db_music = "root";
-$password_db_music = "";
-$db_music = mysqli_connect($hostname, $username, $password,$database) or trigger_error(mysqli_connect_errno(),E_USER_ERROR);
-*/
+
 ?>

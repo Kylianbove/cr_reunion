@@ -1,6 +1,6 @@
 <div class="sidebar-menu">
 					<header class="logo">
-					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="index.php"> <span id="logo"> <h1><small>Mon espace salarié</small></h1></span>
+					<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="index.php"> <span id="logo"> <h1><small>MES</small></h1></span>
 					<!--<img id="logo" src="" alt="Logo"/>-->
 				  </a>
 				</header>
@@ -36,6 +36,7 @@
 								$query_rs_contri = $connexion->prepare("SELECT * FROM contributeur WHERE email=?");
 								$query_rs_contri->execute(array($_SESSION['MM_UsernameADM']));
 								$contributeur = $query_rs_contri->fetch();
+
 
 
 								if($resultat != null){
@@ -126,8 +127,13 @@
 										<li><a href="utiles.php"><i class="fa fa-table"></i> <span> Informations utiles</span></a></li>
 									<?php } ?>
 
+
 									<?php if($resultat !=null){ ?>
 									 <li id="menu-academico" ><a href="#"><i class="fa fa-tachometer"></i> <span>Gestion Utilisateurs</span> <span class="fa fa-angle-right" style="float: right"></span></a>
+									 	<?php
+
+
+											?>
 										 <ul id="menu-academico-sub" >
 											 <li id="menu-academico-avaliacoes" ><a href="adminusers.php">Administrateurs</a></li>
 											 <li id="menu-academico-avaliacoes" ><a href="moderateurs.php">Modérateurs</a></li>

@@ -1,51 +1,20 @@
 <?php include("db.php");
 
 
-if (!function_exists("GetSQLValueString")) {
-function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
-{
-  if (PHP_VERSION < 6) {
-    $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-  }
-
-  $theValue = function_exists("mysql_real_escape_string") ? mysql_real_escape_string($theValue) : mysql_escape_string($theValue);
-
-  switch ($theType) {
-    case "text":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "long":
-    case "int":
-      $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-      break;
-    case "double":
-      $theValue = ($theValue != "") ? doubleval($theValue) : "NULL";
-      break;
-    case "date":
-      $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-      break;
-    case "defined":
-      $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-      break;
-  }
-  return $theValue;
-}
-}
 
 
 // *** Validate request to login to this site.
-if (!isset($_SESSION)) {
-  session_start();
-}
+
+
+
+
+session_start();
+
+
 
 $loginFormAction = $_SERVER['PHP_SELF'];
 if (isset($_GET['accesscheck'])) {
   $_SESSION['PrevUrl'] = $_GET['accesscheck'];
-}
-
-$logoutAction = $_SERVER['PHP_SELF']."?doLogout=true";
-if ((isset($_SERVER['QUERY_STRING'])) && ($_SERVER['QUERY_STRING']=="")){
-  $logoutAction .="&". htmlentities($_SERVER['QUERY_STRING']);
 }
 
 if (isset($_POST['connexion'])) {
@@ -64,23 +33,30 @@ if (isset($_POST['connexion'])) {
   $query_rs_admin->execute(array($loginUsername));
   $resultat = $query_rs_admin->fetch();
 
-  $query_rs_mod = $connexion->prepare("SELECT * FROM moderateur WHERE email=?");
+  $query_rs_mod = $connexion->prepare("SELECT * FROM moderateur WHERE actif = 1 AND email=?");
   $query_rs_mod->execute(array($loginUsername));
   $moderateur = $query_rs_mod->fetch();
 
-  $query_rs_contri = $connexion->prepare("SELECT * FROM contributeur WHERE email=?");
+  $query_rs_contri = $connexion->prepare("SELECT * FROM contributeur WHERE actif = 1 AND email=?");
   $query_rs_contri->execute(array($loginUsername));
   $contributeur = $query_rs_contri->fetch();
 
-  $query_rs_users = $connexion->prepare("SELECT * FROM users WHERE email=?");
+  $query_rs_users = $connexion->prepare("SELECT * FROM users WHERE actif = 1 AND email=?");
   $query_rs_users->execute(array($loginUsername));
   $utilisateurs = $query_rs_users->fetch();
 
   if($utilisateurs != null){
-    header("Location: accesusers.php");
-  }
+    $url = "accesusers.php";
+    echo "<script>setTimeout(function(){location.href='".$url."'}, 0);</script>";
 
-require ("session.class.php");
+  }
+    if($utilisateurs == null && $resultat == null && $moderateur == null && $contributeur == null){
+      require ("session.class.php");
+
+      $Session2 = new Session();
+      $Session2->setFlash('Mauvais mot de passe ou mail !', 'error');
+      $Session2->flash_danger();
+    }
 
     // Comparaison du mdp envoyé via le formulaire avec la base
     if($resultat != null){
@@ -100,11 +76,13 @@ require ("session.class.php");
         $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];
       }
 
+
       header('Location: index.php');
       echo $MM_redirectLoginSuccess ;
     }
     else
     {
+      require ("session.class.php");
 
       $Session2 = new Session();
       $Session2->setFlash('Mauvais mot de passe ou mail !', 'error');
@@ -131,6 +109,8 @@ require ("session.class.php");
     }
     else
     {
+      require ("session.class.php");
+
       $Session2 = new Session();
       $Session2->setFlash('Mauvais mot de passe ou mail !', 'error');
       $Session2->flash_danger();
@@ -156,12 +136,17 @@ require ("session.class.php");
     }
     else
     {
+      require ("session.class.php");
+
       $Session2 = new Session();
       $Session2->setFlash('Mauvais mot de passe ou mail !', 'error');
       $Session2->flash_danger();
     }
   }
  }
+
+
+
 
 ?>
 <!DOCTYPE HTML>
@@ -194,12 +179,12 @@ require ("session.class.php");
 												<!--/login-top-->
 
 													<div class="error-top">
-													<h2 class="inner-tittle page" style="text-align: center; color: #fff!important; line-height: 20px; color: #fff;"><small style="color: #fff;">O18 Market<br><span style="font-size: 16px;  color: #fff;">MarketPlace du Cher</span></small></h2>
+													<h2 class="inner-tittle page" style="text-align: center; color: #fff!important; line-height: 20px; color: #fff;"><small style="color: #fff;">MES<br><span style="font-size: 16px;  color: #fff;"></span></small></h2>
 													    <div class="login">
 														<h3 class="inner-tittle t-inner">Accès  au module d'administration</h3>
                             <form method="post" action="auth_index.php">
-                                  <input type="text" class="text" value="Identifiant" name="login_cmp" >
-                                  <input type="password" value="Password" name="pass_cmp">
+                                  <input type="text" class="text"  placeholder="Identifiant" name="login_cmp" >
+                                  <input type="password" placeholder="Mot de passe" name="pass_cmp">
                                   <div class="submit"><input type="submit" value="M'identifier" name="connexion" ></div>
                                   <div class="clearfix"></div>
 

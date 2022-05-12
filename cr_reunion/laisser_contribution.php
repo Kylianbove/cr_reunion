@@ -19,6 +19,7 @@ $bloc_contri = $selectbloc_contri->fetch();
 </div>
 
 </div>
-<a href="contribution.php" class="linkBar">Laissez une contribution</a>
 
-<a href="contact.php" class="linkBar">Contactez-nous</a>
+	<a href="contribution.php" class="linkBar">Laissez une contribution</a>
+
+	<a href="contact.php" class="linkBar">Contactez-nous</a>

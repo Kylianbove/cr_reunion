@@ -1,7 +1,9 @@
 <?php
 $activePage = basename($_SERVER['PHP_SELF'], ".php");
-?>
-<nav class="navigation">
+
+
+  ?>
+  <nav class="navigation">
     <ul>
         <li ><a href="index.php" class="<?= ($activePage == 'index') ? 'active':''; ?>"><i class="fa-duotone fa-house-blank"></i> <span>Accueil</span></a></li>
         <li><a href="liste-actus.php" class="<?= ($activePage == 'liste-actus') ? 'active':''; ?>"><i class="fa-duotone fa-rss"></i> <span>Actualités</span></a></li>
@@ -20,5 +22,6 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
         <hr>
         <li><a href="contribution.php" class="<?= ($activePage == 'contribution') ? 'active':''; ?>"><i class="fa-duotone fa-comment-lines"></i> <span>Contribuez</span></a></li>
         <li><a href="contact.php" class="<?= ($activePage == 'contact') ? 'active':''; ?>"><i class="fa-duotone fa-envelopes-bulk"></i> <span>Contactez-nous</span></a></li>
-    </ul>
+
+	</ul>
 </nav>

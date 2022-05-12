@@ -189,7 +189,7 @@ if(!empty($contributeur) || !empty($moderateur) || !empty($administrateur) || !e
 
     </div>
 
-    <a href="liste-cr.php" class="linkBar">Accédez aux CR de réunions</a>
+    <a href="liste-actus.php?" class="linkBar">Accédez aux Actualités</a>
 
   <?php }} ?>
 

@@ -10,11 +10,12 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/gen.css">
   <link rel="stylesheet" href="css/monthly.css">
+
   <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'>
 
 
   <link rel="stylesheet" href="css/site.css">
-  <link rel="stylesheet" href="css/style.css">
+
 
 </head>
 <body>
@@ -28,37 +29,43 @@
 
 
 
-      <div class="col-sm-12">
-           <h2><i class="fa-duotone fa-envelopes-bulk"></i> Contactez-nous</h2>
 
-        </div>
+            	<div class="col-sm-12">
+                   <h2><i class="fa-duotone fa-envelopes-bulk"></i> Contactez-nous</h2>
 
-         <div class="col-sm-12" id="inscription">
+                </div>
 
-         <form action="" method="POST">
+                 <div class="col-sm-12" id="inscription">
 
-              
+                 <form action="" method="POST">
 
-                  <label><b>Nom*</b></label>
-                  <input type="text" placeholder="Entrer votre nom" name="nom" required>
+                 	<div class="col-md-6">
+                  		<label><b>Nom*</b></label>
+                  		<input type="text" placeholder="Entrer votre nom" name="nom" required>
 
-                  <label><b>Prénom*</b></label>
-                  <input type="text" placeholder="Entrer votre prénom" name="prenom" required>
+                 		<label><b>Prénom*</b></label>
+                 		<input type="text" placeholder="Entrer votre prénom" name="prenom" required>
+                 	</div>
 
-                  <label><b>Téléphone</b></label>
-                  <input type="tel" placeholder="Entrer votre numéro de téléphone" name="tel">
+                 	<div class="col-md-6">
+                  		<label><b>Téléphone</b></label>
+                  		<input type="tel" placeholder="Entrer votre numéro de téléphone" name="tel">
 
-                  <label><b>Adresse Mail*</b></label>
-                  <input type="email" placeholder="Saisissez votre adresse mail" name="email" required>
+                  		<label><b>Adresse Mail*</b></label>
+                  		<input type="email" placeholder="Saisissez votre adresse mail" name="email" required>
+                  	</div>
 
-                  <label><b>Message*</b></label>
-                  <textarea type="text" placeholder="Saisissez votre message" name="message" rows="10" cols="67"required></textarea>
+                  <div class="col-md-12">
 
-                  <img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha" style="cursor:pointer; width:150px;">
-                  <input type="text" placeholder="Saisissez le code" name="captcha"/>
+                  	<label><b>Message*</b></label>
+                  	<textarea type="text" placeholder="Saisissez votre message" name="message" rows="10" cols="67"required></textarea>
 
 
-                 <input type="submit" id='submit' name="contact" value="ENVOYER" >
+                  	<img src="image.php" onclick="this.src='image.php?' + Math.random();" alt="captcha" style="cursor:pointer; width:150px;">
+                  	<input type="text" placeholder="Saisissez le code" name="captcha" required />
+
+
+                 	<input type="submit" id='submit' name="contact" value="ENVOYER" >
 
 
                 <?php
@@ -69,9 +76,6 @@
                       require ("session.class.php");
 
                       if($_POST['captcha']==$_SESSION['code']){
-
-
-
 
                       $stmt = $connexion->prepare("INSERT INTO `contact`(`id_contact`, `email`, `message`, `nom`, `prenom`, `tel`) VALUES (:id, :email, :message, :nom, :prenom, :tel)");
 
@@ -86,8 +90,9 @@
 
                     $stmt->execute();
 
-                    $url = "index.php";
-                    echo "<script>setTimeout(function(){location.href='".$url."'}, 3000);</script>";
+                      $url = "index.php";
+                      echo "<script>setTimeout(function(){location.href='".$url."'}, 3000);</script>";
+
 
 
 
@@ -98,17 +103,18 @@
                     $Session2->flash_success();
 
 
-                  } else {
+                  }else {
                     $Session3 = new Session();
                     $Session3->setFlash("Code incorrect !", 'error');
                     $Session3->flash_danger();
                   }
                   }
                  ?>
+               </div>
 
             </form>
 
-          </div>
+         </div>
     </div>
 
     <h4>Nous localiser</h4>

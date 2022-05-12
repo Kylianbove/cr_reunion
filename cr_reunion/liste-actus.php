@@ -119,7 +119,8 @@
         <div class="accroche">
           <?php echo $actualite['accroche']; ?>
         </div>
-        <a href="detail-actu.php?param=<?php echo $valeur ;?>"><i class="fa-duotone fa-chevrons-right"></i> En savoir plus</a>
+
+          <a href="detail-actu.php?param=<?php echo $valeur ;?>"><i class="fa-duotone fa-chevrons-right"></i> En savoir plus</a>
 
         </div>
 
@@ -136,9 +137,13 @@
           <?php for($i=1;$i<=$nb_page;$i++){
             if($page != $i){
               if(empty($categorie)){
-              echo "<li><a href='?page=$i'>$i</a></li>";
+
+                  echo "<li><a href='?page=$i'>$i</a></li>";
+
               }else{
-                echo "<li><a href='?categorie=$categorie&amp;page=$i'>$i</a></li>";
+
+                echo "<li><a href='?categorie=$categorie&page=$i'>$i</a></li>";
+
               }
             }else{
               echo "<li><a class='active'>$i</a></li>";
@@ -159,7 +164,9 @@
     <label for="categorie">Catégories</label>
     <select class="form-control" id="categorie" onchange="document.location.href=this.value">
       <option value="">--</option>
-      <option value="?categorie=0">Toutes les catégories</option>
+
+        <option value="?categorie=0">Toutes les catégories</option>
+
       <?php
 
 
@@ -171,14 +178,9 @@
 
            if ($categorie > 0) {
           do{
-
-      ?>
-
-     <option value="?categorie=<?php echo $categorie['id_cat']; ?>"><?php echo $categorie['titre']; ?></option>
-
-
+              ?>
+                   <option value="?categorie=<?php echo $categorie['id_cat']; ?>"><?php echo $categorie['titre']; ?></option>
       <?php
-
     }while($categorie = $selectcategorie->fetch());
           }
 
@@ -193,8 +195,20 @@
 
 
     </div>
+    <?php
+      if(isset($_SESSION['Username'])){
+    $i = 0;
+    if(isset($users)){
+      if($users['typeUser'] == 1){
+        $i = 1;
+      }
+    }
+    if($i != 1){
+     ?>
+      <a href="liste-cr.php" class="linkBar">Accédez aux CR de réunions</a>
+    <?php } } ?>
 
-    <a href="liste-actus.php" class="linkBar">Accédez aux Actualités</a>
+
 
 
     <?php include('laisser_contribution.php'); ?>

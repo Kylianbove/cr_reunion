@@ -45,5 +45,7 @@
 <?php }}while($actualite = $selectactu->fetch()); ?>
 
   </div>
-  <a href="liste-actus.php" class="linkBar">Toutes les actualités</a>
+
+            <a href="liste-actus.php" class="linkBar">Toutes les actualités</a>
+
 </div>

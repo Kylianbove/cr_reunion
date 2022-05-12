@@ -16,6 +16,6 @@ if($contributeur != null){
 $deletetoken->execute([$_SESSION['Username']]);
   unset($_SESSION['Username']);
   $url = "index.php";
-  echo "<script>setTimeout(location.href='".$url."', 1000);</script>";
+  echo "<script>setTimeout(function(){location.href='".$url."'}, 1000);</script>";
 
 ?>

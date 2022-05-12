@@ -1,9 +1,10 @@
-<?php include("db.php");  ?>
+<?php include("db.php");
+?>
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Mon Espace Salarié - Accueil</title>
+  <title>Mon Espace Salarié - Mon espace membre</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="fa/fa6/css/all.css">
@@ -13,7 +14,7 @@
 
 
   <link rel="stylesheet" href="css/site.css">
-  <link rel="stylesheet" href="css/style.css">
+
   <script src="js/jscolor.js"></script>
 </head>
 <body>
@@ -46,13 +47,17 @@
       }
       ?>
 
-      <div class="col-sm-12">
-        <h2><i class="fa-duotone fa-users iconTitle"></i> Mon Espace</h2>
-       </div>
 
-       <div class="col-sm-12" id="inscription">
 
-      <form action="" method="POST" enctype="multipart/form-data">
+
+                <div class="col-sm-12">
+                  <h2><i class="fa-duotone fa-users iconTitle"></i> Mon Espace</h2>
+                 </div>
+
+                 <div class="col-sm-12" id="inscription">
+
+                <form action="" method="POST" enctype="multipart/form-data">
+
                 <div class="col-md-6">
                   <label><b>Nom</b></label>
                   <input type="text" placeholder="Entrer votre nom" name="nom" value="<?php echo $row_rs_utiles['nom']; ?>" required>
@@ -141,8 +146,15 @@
                <?php } ?>
 
                <label for="couleur">Couleur</label>
-               <input type="text" class="form-control" id="couleur" name="couleur" value="<?php echo $row_rs_utiles['couleur']; ?>" data-jscolor="{preset:'small dark', position:'right'}" required>
+                <?php if($row_rs_utiles['couleur'] != null){ ?>
+
+                  <input type="text" class="form-control" id="couleur" name="couleur" value="<?php echo $row_rs_utiles['couleur']; ?>" data-jscolor="{preset:'small dark', position:'right'}" required>
+
+                <?php }else{ ?>
+                <input type="text" class="form-control" id="couleur" name="couleur" value="#000000" data-jscolor="{preset:'small dark', position:'right'}" required>
+                <?php } ?>
                </div>
+               <div class="col-md-12">
                  <input type="submit" id='submit' name="modifier" value="VALIDER LES MODIFICATIONS" >
 
 
@@ -190,10 +202,8 @@
                         $symbol = preg_match('@[\W]@', $_POST['password']);
 
 
-                        if($resultat == null ){
-                          if($resultat2 == null ){
-                            if($resultat3 == null ){
-                              if($resultat4 == null ){
+                        if($resultat == null && $resultat2 == null && $resultat3 == null && $resultat4 == null){
+
                                 if($uppercase){
                                   if($lowercase){
                                     if($number){
@@ -314,7 +324,7 @@
 
                                                   $updateSQL->execute();
 
-                                                  $url = "index.php";
+                                                  $url = "index.php?secur=$ciphertext";
                                                   echo "<script>setTimeout(function(){location.href='".$url."'}, 3000);</script>";
 
 
@@ -443,40 +453,24 @@
                                     $Session4->setFlash('Le mot de passe doit contenir au moins 1 majuscule','error');
                                     $Session4->flash_danger();
                                   }
-                                }else
-                                {
-                                  $Session13 = new Session();
-                                  $Session13->setFlash("Adresse mail déjà utilisée en tant qu'utilisateur",'error');
-                                  $Session13->flash_danger();
-                                }
-                              }else
-                              {
-                                $Session12 = new Session();
-                                $Session12->setFlash('Adresse mail déjà utilisée en tant que contributeur','error');
-                                $Session12->flash_danger();
-                              }
-                            }else
-                            {
-                              $Session11 = new Session();
-                              $Session11->setFlash('Adresse mail déjà utilisée en tant que modérateur','error');
-                              $Session11->flash_danger();
-                            }
+
                           }else
                           {
                             $Session3 = new Session();
-                            $Session3->setFlash("Adresse mail déjà utilisée en tant qu'administrateur",'error');
+                            $Session3->setFlash("Adresse mail déjà utilisée",'error');
                             $Session3->flash_danger();
                           }
 
 
                     }
                  ?>
+                 </div>
 
             </form>
             </div>
-          </div>
+
     </div>
-  
+  </div>
   <div class="col-sm-5 col-md-5 col-lg-3 colDroite">
 
     <!-- info bandeau droit -->

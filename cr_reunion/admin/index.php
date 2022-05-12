@@ -204,15 +204,15 @@ $contributeur = $query_rs_contri->fetch();
 																							</div>
 
 																						</section>
-                                            <?php } ?>
+                                           											 <?php } ?>
 																						<section id="section-2">
-                                              <?php if($resultat != null || $moderateur != null){ ?>
+                                              										<?php if($resultat != null || $moderateur != null){ ?>
 																							<div class="mediabox">
 																								<i class="fa fa-trophy"></i>
 																								<h3>Catégories</h3>
 																								<p><a href="cr_categorie.php">Cliquez ici</a></p>
 																							</div>
-                                            <?php } ?>
+                                           											 <?php } ?>
 
 																							<div class="mediabox">
 																								<i class="fa fa-trophy"></i>
@@ -225,9 +225,9 @@ $contributeur = $query_rs_contri->fetch();
 																								<i class="fa fa-trophy"></i>
 																								<h3>Gestion des médias</h3>
 																								<p><a href="cr_image.php">Images</a></p>
-                                                <p><a href="cr_piecejointe.php">Pieces Jointes</a></p>
-                                                <p><a href="cr_video.php">Vidéos</a></p>
-                                                <p><a href="cr_audio.php">Audios</a></p>
+                                               											 <p><a href="cr_piecejointe.php">Pieces Jointes</a></p>
+                                               											 <p><a href="cr_video.php">Vidéos</a></p>
+                                              											  <p><a href="cr_audio.php">Audios</a></p>
 																							</div>
 
 

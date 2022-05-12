@@ -116,21 +116,6 @@ $tg = $row_rs_content['illu'];
 // Constantes
 define('TARGET', 'uploads/slides/');    // Repertoire cible
 define('MAX_SIZE', 800000);    // Taille max en octets du fichier
-define('WIDTH_MAX', 2000);    // Largeur max de l'image en pixels
-define('HEIGHT_MAX', 2000);    // Hauteur max de l'image en pixels
-
-// Tableaux de donnees
-$tabExt = array('jpg','gif','png','jpeg');    // Extensions autorisees
-$infosImg = array();
-
-// Variables
-$extension = '';
-$message = '';
-$nomImage = '';
-
-/************************************************************
- * Creation du repertoire cible si inexistant
- *************************************************************/
 
 if( !is_dir(TARGET) ) {
   if( !mkdir(TARGET, 0755) ) {
@@ -138,164 +123,7 @@ if( !is_dir(TARGET) ) {
   }
 }
 
-//fin de transfert de donnée
-if(isset($t1)){
-if($t1==''){	$t1=$tg;}
-}
-if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {// On verifie si le champ est rempli
-  if( !empty($_FILES['fichier']['name']) )
-  {
-    // Recuperation de l'extension du fichier
-    $extension  = pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION);
 
-    // On verifie l'extension du fichier
-    if(in_array(strtolower($extension),$tabExt))
-    {
-      // On recupere les dimensions du fichier
-      $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
-
-      // On verifie le type de l'image
-      if($infosImg[2] >= 1 && $infosImg[2] <= 14)
-      {
-        // On verifie les dimensions et taille de l'image
-        if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['fichier']['tmp_name']) <= MAX_SIZE))
-        {
-          // Parcours du tableau d'erreurs
-          if(isset($_FILES['fichier']['error'])
-            && UPLOAD_ERR_OK === $_FILES['fichier']['error'])
-          {
-            // On renomme le fichier
-            $nomImage = md5(uniqid()) .'.'. $extension;
-
-            // Si c'est OK, on teste l'upload
-            if(move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage))
-            {
-              $message = 'Upload réussi !';
-            }
-            else
-            {
-              // Sinon on affiche une erreur systeme
-              $message = 'Problème lors de l\'upload !';
-            }
-          }
-          else
-          {
-            $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
-          }
-        }
-        else
-        {
-          // Sinon erreur sur les dimensions et taille de l'image
-          $message = 'Erreur dans les dimensions de l\'image !';
-        }
-      }
-      else
-      {
-        // Sinon erreur sur le type de l'image
-        $message = 'Le fichier à uploader n\'est pas une image !';
-      }
-    }
-    else
-    {
-      // Sinon on affiche une erreur pour l'extension
-      $message = 'L\'extension du fichier est incorrecte !';
-    }
-  }
-  else
-  {
-    // Sinon on affiche une erreur pour le champ vide
-    $message = 'Veuillez remplir le formulaire svp !';
-  }
-
-$t1 = $nomImage;
-if(isset($t1)&&(isset($tg))){
-if($t1=='') { $t1 = $tg; }
-}
-/*
-$date1 = str_replace('/', "-", $_POST['dateDebut']);
-$date2 = str_replace('/', "-", $_POST['dateFin']);
-*/
-
-
-}
-
-if ((isset($_POST["MM_update2"])) && ($_POST["MM_update2"] == "form1")) {// On verifie si le champ est
-
-  if( !empty($_FILES['fichier']['name']) )
-  {
-    // Recuperation de l'extension du fichier
-    $extension  = pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION);
-
-    // On verifie l'extension du fichier
-    if(in_array(strtolower($extension),$tabExt))
-    {
-      // On recupere les dimensions du fichier
-      $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
-
-      // On verifie le type de l'image
-      if($infosImg[2] >= 1 && $infosImg[2] <= 14)
-      {
-        // On verifie les dimensions et taille de l'image
-        if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['fichier']['tmp_name']) <= MAX_SIZE))
-        {
-          // Parcours du tableau d'erreurs
-          if(isset($_FILES['fichier']['error'])
-            && UPLOAD_ERR_OK === $_FILES['fichier']['error'])
-          {
-            // On renomme le fichier
-            $nomImage = md5(uniqid()) .'.'. $extension;
-
-            // Si c'est OK, on teste l'upload
-            if(move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage))
-            {
-              $message = 'Upload réussi !';
-            }
-            else
-            {
-              // Sinon on affiche une erreur systeme
-              $message = 'Problème lors de l\'upload !';
-            }
-          }
-          else
-          {
-            $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
-          }
-        }
-        else
-        {
-          // Sinon erreur sur les dimensions et taille de l'image
-          $message = 'Erreur dans les dimensions de l\'image !';
-        }
-      }
-      else
-      {
-        // Sinon erreur sur le type de l'image
-        $message = 'Le fichier à uploader n\'est pas une image !';
-      }
-    }
-    else
-    {
-      // Sinon on affiche une erreur pour l'extension
-      $message = 'L\'extension du fichier est incorrecte !';
-    }
-  }
-  else
-  {
-    // Sinon on affiche une erreur pour le champ vide
-    $message = 'Veuillez remplir le formulaire svp !';
-  }
-
-$t1 = $nomImage;
-if(isset($t1)&&(isset($tg))){
-if($t1=='') { $t1 = $tg; }
-}
-
-
-
-
-
-
-}
 require ("session.class.php");
 
 ?>
@@ -396,7 +224,7 @@ textarea{
                         <div class="tab-inner">
                               <div id="tabs" class="tabs">
                             <?php if((!isset($_GET['id']))&&(!isset($_GET['ajout']))){ ?>
-                                      <h2 class="inner-tittle">Zone Planning <a href="planning.php?ajout" class="btn btn-warning">Ajouter</a>
+                                      <h2 class="inner-tittle">Zone Planning <a href="planning.php?ajout" class="btn btn-warning"><i class="fa fa-plus"></i> Ajouter</a>
                                         <form method="post" action="" enctype="multipart/form-data">
                                           <button type="submit" class="btn btn-default" name="generer" style="float: right; margin-right: 20%; font-size: 20px;">Générer fichier XML</button>
                                         </form>
@@ -494,7 +322,7 @@ textarea{
                                   <table id="myTable" class="tablesorter">
                                   <thead>
                                   <tr>
-                                   <th style="width: 120px;"></th>
+                                   <th style="width: 150px;"></th>
                                     <th style="width: 120px;">Publier</th>
                                     <th style="width: 150px;">Affichage</th>
                                     <th style="width: 120px;">Annuler</th>
@@ -602,15 +430,15 @@ textarea{
 
                                       if($row_rs_content2 == null){
                                         $Session15 = new Session();
-                                        $Session15->setFlash("Aucune actualité correspond à votre recherche",'error');
+                                        $Session15->setFlash("Aucun planning correspond à votre recherche",'error');
                                         $Session15->flash_danger();
                                       }
                                       do{ ?>
 
 
                                     <tr>
-                                      <td><a href="planning.php?id=<?php echo $row_rs_content2['id_planning']; ?>">Modif.</a>  |
-                                        <a href="planning.php?supprimer=<?php echo $row_rs_content2['id_planning']; ?>">Suppr.</a>
+                                      <td><a href="planning.php?id=<?php echo $row_rs_content2['id_planning']; ?>"style="color: green;"><i class="fa fa-edit"></i>Modif.</a>  |
+                                        <a href="planning.php?supprimer=<?php echo $row_rs_content2['id_planning']; ?>"style="color: red;"><i class="fa fa-trash-o"></i>Suppr.</a>
                                       </td>
 
 
@@ -625,8 +453,8 @@ textarea{
                                         <?php if($row_rs_content2['affichage']==4){ ?><span style="display:block; width; 150px;"> Pour les contributeurs, modérateurs et administrateurs </span> <?php } ?>
                                       </strong>  </td>
                                       <td>
-                                      <?php if($row_rs_content2['annuler']==0){ ?><span style="display:block; width; 150px;"><i class="fa fa-times-circle" style="color: red"></i> Non Annulé </span><?php } ?>
-                                      <?php if($row_rs_content2['annuler']==1){ ?><span style="display:block; width; 150px;"><i class="fa fa-check-circle" style="color: green"><i class="fa fa-times-circle" style="color: red"></i> Annulé </span> <?php } ?></td>
+                                      <?php if($row_rs_content2['annuler']==0){ ?><span style="display:block; width; 150px;"><i class="fa fa-check-circle" style="color: green"></i> Non Annulé </span><?php } ?>
+                                      <?php if($row_rs_content2['annuler']==1){ ?><span style="display:block; width; 150px;"><i class="fa fa-times-circle" style="color: red"></i> Annulé </span> <?php } ?></td>
 
 
                                       <td><strong><?php echo $row_rs_content2['titre']; ?></strong></td>
@@ -647,8 +475,8 @@ textarea{
 
 
                                   <tr>
-                                    <td><a href="planning.php?id=<?php echo $row_rs_content['id_planning']; ?>">Modif.</a>  |
-                                      <a href="planning.php?supprimer=<?php echo $row_rs_content['id_planning']; ?>">Suppr.</a>
+                                    <td><a href="planning.php?id=<?php echo $row_rs_content['id_planning']; ?>"style="color: green;"><i class="fa fa-edit"></i>Modif.</a>  |
+                                      <a href="planning.php?supprimer=<?php echo $row_rs_content['id_planning']; ?>"style="color: red;"><i class="fa fa-trash-o"></i>Suppr.</a>
                                     </td>
 
 
@@ -663,8 +491,8 @@ textarea{
                                       <?php if($row_rs_content['affichage']==4){ ?><span style="display:block; width; 150px;"> Pour les contributeurs, modérateurs et administrateurs </span> <?php } ?>
                                       </strong></td>
                                     <td>
-                                    <?php if($row_rs_content['annuler']==0){ ?><span style="display:block; width; 150px;"><i class="fa fa-times-circle" style="color: red"></i> Non Annulé </span><?php } ?>
-                                    <?php if($row_rs_content['annuler']==1){ ?><span style="display:block; width; 150px;"><i class="fa fa-check-circle" style="color: green"></i> Annulé </span> <?php } ?></td>
+                                    <?php if($row_rs_content['annuler']==0){ ?><span style="display:block; width; 150px;"><i class="fa fa-check-circle" style="color: green"></i> Non Annulé </span><?php } ?>
+                                    <?php if($row_rs_content['annuler']==1){ ?><span style="display:block; width; 150px;"><i class="fa fa-times-circle" style="color: red"></i> Annulé </span> <?php } ?></td>
 
 
 
@@ -690,7 +518,7 @@ textarea{
                                   }
                                   </style>
                                   <form method="post" action="" enctype="multipart/form-data">
-                                    <button type="submit" class="btn btn-default" name="agenda" style="float: left; margin-top: 5%; font-size: 20px;">Voir agenda</button>
+                                    <button type="submit" class="btn btn-default" name="agenda" style="float: left; margin-top: 5%; font-size: 20px;"><i class="fa fa-eye"></i> Voir agenda</button>
                                   </form>
                                   <?php if(isset($_POST['agenda'])){?>
 
@@ -822,7 +650,7 @@ textarea{
                                      <div class="clearfix"></div>
                                      <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
                                      <input type="hidden" name="MM_update" value="form1" />
-                                      <button type="submit" class="btn btn-default" name="modifier">Valider les modifications</button>
+                                      <button type="submit" class="btn btn-default" name="modifier" style="background-color: #0bdb00;">Valider les modifications</button>
                                       <?php
 
                                       if(isset($_POST['modifier']))
@@ -888,16 +716,14 @@ textarea{
                                       <label for="titre">Date de Début</label>
                                     <div class='input-group date' >
 
-                                     <input type='text' class="form-control"  id='date_debut' name='date_debut'  />
+                                     <input type='text' class="form-control" id='date_debut' name='date_debut' placeholder="_ _ _ _/_ _/_ _" required>
                                      <span class="input-group-addon">
                                      <span class="glyphicon glyphicon-calendar"></span>
                                      </span>
                                     </div>
                                    </div>
                                    <script>
-                                   $('#date_debut').datetimepicker({
-                                   	mask:'9999/19/39 29:59'
-                                   });
+                                   $('#date_debut').datetimepicker();
 
 
 
@@ -909,7 +735,7 @@ textarea{
                                       <label for="titre">Date de Fin</label>
                                     <div class='input-group date' >
 
-                                     <input type='text' class="form-control" value="" id='date_fin' name='date_fin'  />
+                                     <input type='text' class="form-control" value="" id='date_fin' name='date_fin' placeholder="_ _ _ _/_ _/_ _" required>
                                      <span class="input-group-addon">
                                      <span class="glyphicon glyphicon-calendar"></span>
                                      </span>
@@ -917,9 +743,7 @@ textarea{
                                    </div>
                                    <script type="text/javascript">
 
-                                      $('#date_fin').datetimepicker({
-                                      	mask:'9999/19/39 29:59'
-                                      });
+                                      $('#date_fin').datetimepicker();
 
                                     </script>
 
@@ -975,12 +799,12 @@ textarea{
                                      <input type="hidden" name="id" value="" />
                                      <input type="hidden" name="MM_update2" value="form1" />
 
-                                      <button type="submit" class="btn btn-default" name="ajouter">Ajouter</button> </form>
+                                      <button type="submit" class="btn btn-default" name="ajouter" style="background-color: #0bdb00;"><i class="fa fa-plus"></i> Ajouter</button> </form>
                                       <?php
                                       if(isset($_POST['ajouter'])){
 
 
-                                                        $insertSQL = $connexion->prepare("INSERT INTO `planning`(`id_planning`, `titre`, `description`,`couleur`, `date_debut`, `date_fin`, `publier`, `affichage`) VALUES (:id_planning, :titre, :description, :couleur, :date_debut, :date_fin, :publier, :affichage)");
+                                                        $insertSQL = $connexion->prepare("INSERT INTO `planning`(`id_planning`, `titre`, `description`,`couleur`, `date_debut`, `date_fin`, `publier`, `affichage`, `annuler`) VALUES (:id_planning, :titre, :description, :couleur, :date_debut, :date_fin, :publier, :affichage, 0)");
 
 
                                                         $insertSQL -> bindParam(':id_planning', $id_planning);
@@ -997,6 +821,7 @@ textarea{
                                                         $insertGoTo = "planning.php?OK";
 
                                                         echo "<script>window.location.href='".$insertGoTo."';</script>";
+
 
                                       }
 
@@ -1079,7 +904,8 @@ textarea{
               </script>
 
   <?php }else{
-          header('Location: acceserreur.php');
+          $url = "acceserreur.php";
+          echo "<script>setTimeout(function(){location.href='".$url."'}, 0);</script>";
       } ?>
 <!--js -->
 <link rel="stylesheet" href="css/vroom.css">

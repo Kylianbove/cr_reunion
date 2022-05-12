@@ -116,21 +116,7 @@ $tg = $row_rs_content['illu'];
 // Constantes
 define('TARGET', 'uploads/slides/');    // Repertoire cible
 define('MAX_SIZE', 800000);    // Taille max en octets du fichier
-define('WIDTH_MAX', 2000);    // Largeur max de l'image en pixels
-define('HEIGHT_MAX', 2000);    // Hauteur max de l'image en pixels
 
-// Tableaux de donnees
-$tabExt = array('jpg','gif','png','jpeg');    // Extensions autorisees
-$infosImg = array();
-
-// Variables
-$extension = '';
-$message = '';
-$nomImage = '';
-
-/************************************************************
- * Creation du repertoire cible si inexistant
- *************************************************************/
 
 if( !is_dir(TARGET) ) {
   if( !mkdir(TARGET, 0755) ) {
@@ -138,164 +124,6 @@ if( !is_dir(TARGET) ) {
   }
 }
 
-//fin de transfert de donnée
-if(isset($t1)){
-if($t1==''){	$t1=$tg;}
-}
-if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "form1")) {// On verifie si le champ est rempli
-  if( !empty($_FILES['fichier']['name']) )
-  {
-    // Recuperation de l'extension du fichier
-    $extension  = pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION);
-
-    // On verifie l'extension du fichier
-    if(in_array(strtolower($extension),$tabExt))
-    {
-      // On recupere les dimensions du fichier
-      $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
-
-      // On verifie le type de l'image
-      if($infosImg[2] >= 1 && $infosImg[2] <= 14)
-      {
-        // On verifie les dimensions et taille de l'image
-        if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['fichier']['tmp_name']) <= MAX_SIZE))
-        {
-          // Parcours du tableau d'erreurs
-          if(isset($_FILES['fichier']['error'])
-            && UPLOAD_ERR_OK === $_FILES['fichier']['error'])
-          {
-            // On renomme le fichier
-            $nomImage = md5(uniqid()) .'.'. $extension;
-
-            // Si c'est OK, on teste l'upload
-            if(move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage))
-            {
-              $message = 'Upload réussi !';
-            }
-            else
-            {
-              // Sinon on affiche une erreur systeme
-              $message = 'Problème lors de l\'upload !';
-            }
-          }
-          else
-          {
-            $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
-          }
-        }
-        else
-        {
-          // Sinon erreur sur les dimensions et taille de l'image
-          $message = 'Erreur dans les dimensions de l\'image !';
-        }
-      }
-      else
-      {
-        // Sinon erreur sur le type de l'image
-        $message = 'Le fichier à uploader n\'est pas une image !';
-      }
-    }
-    else
-    {
-      // Sinon on affiche une erreur pour l'extension
-      $message = 'L\'extension du fichier est incorrecte !';
-    }
-  }
-  else
-  {
-    // Sinon on affiche une erreur pour le champ vide
-    $message = 'Veuillez remplir le formulaire svp !';
-  }
-
-$t1 = $nomImage;
-if(isset($t1)&&(isset($tg))){
-if($t1=='') { $t1 = $tg; }
-}
-/*
-$date1 = str_replace('/', "-", $_POST['dateDebut']);
-$date2 = str_replace('/', "-", $_POST['dateFin']);
-*/
-
-
-}
-
-if ((isset($_POST["MM_update2"])) && ($_POST["MM_update2"] == "form1")) {// On verifie si le champ est
-
-  if( !empty($_FILES['fichier']['name']) )
-  {
-    // Recuperation de l'extension du fichier
-    $extension  = pathinfo($_FILES['fichier']['name'], PATHINFO_EXTENSION);
-
-    // On verifie l'extension du fichier
-    if(in_array(strtolower($extension),$tabExt))
-    {
-      // On recupere les dimensions du fichier
-      $infosImg = getimagesize($_FILES['fichier']['tmp_name']);
-
-      // On verifie le type de l'image
-      if($infosImg[2] >= 1 && $infosImg[2] <= 14)
-      {
-        // On verifie les dimensions et taille de l'image
-        if(($infosImg[0] <= WIDTH_MAX) && ($infosImg[1] <= HEIGHT_MAX) && (filesize($_FILES['fichier']['tmp_name']) <= MAX_SIZE))
-        {
-          // Parcours du tableau d'erreurs
-          if(isset($_FILES['fichier']['error'])
-            && UPLOAD_ERR_OK === $_FILES['fichier']['error'])
-          {
-            // On renomme le fichier
-            $nomImage = md5(uniqid()) .'.'. $extension;
-
-            // Si c'est OK, on teste l'upload
-            if(move_uploaded_file($_FILES['fichier']['tmp_name'], TARGET.$nomImage))
-            {
-              $message = 'Upload réussi !';
-            }
-            else
-            {
-              // Sinon on affiche une erreur systeme
-              $message = 'Problème lors de l\'upload !';
-            }
-          }
-          else
-          {
-            $message = 'Une erreur interne a empêché l\'uplaod de l\'image';
-          }
-        }
-        else
-        {
-          // Sinon erreur sur les dimensions et taille de l'image
-          $message = 'Erreur dans les dimensions de l\'image !';
-        }
-      }
-      else
-      {
-        // Sinon erreur sur le type de l'image
-        $message = 'Le fichier à uploader n\'est pas une image !';
-      }
-    }
-    else
-    {
-      // Sinon on affiche une erreur pour l'extension
-      $message = 'L\'extension du fichier est incorrecte !';
-    }
-  }
-  else
-  {
-    // Sinon on affiche une erreur pour le champ vide
-    $message = 'Veuillez remplir le formulaire svp !';
-  }
-
-$t1 = $nomImage;
-if(isset($t1)&&(isset($tg))){
-if($t1=='') { $t1 = $tg; }
-}
-
-
-
-
-
-
-}
 
 ?>
 <!DOCTYPE HTML>
@@ -382,7 +210,7 @@ textarea{
                         <div class="tab-inner">
                               <div id="tabs" class="tabs">
                             <?php if((!isset($_GET['id']))&&(!isset($_GET['ajout']))){ ?>
-                                      <h2 class="inner-tittle">Zone Piece Jointe <a href="piecejointe.php?ajout" class="btn btn-warning">Ajouter</a></h2>
+                                      <h2 class="inner-tittle">Zone Piece Jointe <a href="piecejointe.php?ajout" class="btn btn-warning"><i class="fa fa-plus"></i> Ajouter</a></h2>
 
                                       <div class="form-group2" style="width: 20%;">
                                         <label>Pages liées:</label>
@@ -420,7 +248,7 @@ textarea{
                                   <table id="myTable" class="tablesorter">
                                   <thead>
                                   <tr>
-                                   <th style="width: 120px;"></th>
+                                   <th style="width: 150px;"></th>
                                    <th style="width: 120px">Publier</th>
                                    <th style="width: 150px">Actualité</th>
                                     <th style="width: 120px;">Titre</th>
@@ -436,8 +264,8 @@ textarea{
 
 
                                   <tr>
-                                    <td><a href="piecejointe.php?id=<?php echo $row_rs_content['id_piecejointe']; ?>">Modif.</a>  |
-                                      <a href="piecejointe.php?supprimer=<?php echo $row_rs_content['id_piecejointe']; ?>">Suppr.</a>
+                                    <td><a href="piecejointe.php?id=<?php echo $row_rs_content['id_piecejointe']; ?>"style="color: green;"><i class="fa fa-edit"></i>Modif.</a>  |
+                                      <a href="piecejointe.php?supprimer=<?php echo $row_rs_content['id_piecejointe']; ?>"style="color: red;"><i class="fa fa-trash-o"></i>Suppr.</a>
                                     </td>
 
 
@@ -499,7 +327,7 @@ textarea{
 
 
                                     <div class="form-group">
-                                    <label for="fichier">Piece Jointe</label>
+                                    <label for="fichier">Piece Jointe (formats autorisés: pdf, docx, doc, xlsx, xls)</label>
                                     <input type="file" id="fichier" name="fichier" value="<?php echo $row_rs_utiles['fichier']; ?>"></br>
                                     <?php
 
@@ -517,8 +345,16 @@ textarea{
                                     if(pathinfo($row_rs_utiles['fichier'], PATHINFO_EXTENSION) == "xls" || pathinfo($row_rs_utiles['fichier'], PATHINFO_EXTENSION) == "xlsx" ){ ?>
                                       <a href="./ouvrirfichier.php?dwn=./fichiers/piecesjointes/<?php echo $row_rs_utiles['fichier'];  ?>"><span style="color: green"><?php echo $row_rs_utiles['fichier']; ?></span></a>
                                     <?php } ?>
+									<?php
 
+                                    if(pathinfo($row_rs_utiles['fichier'], PATHINFO_EXTENSION) == "ppt" || pathinfo($row_rs_utiles['fichier'], PATHINFO_EXTENSION) == "pptx" ){ ?>
+                                      <a href="./ouvrirfichier.php?dwn=./fichiers/piecesjointes/<?php echo $row_rs_utiles['fichier'];  ?>"><span style="color: orange"><?php echo $row_rs_utiles['fichier']; ?></span></a>
+                                    <?php } ?>
+									<?php
 
+                                    if(pathinfo($row_rs_utiles['fichier'], PATHINFO_EXTENSION) == "jpg" || pathinfo($row_rs_utiles['fichier'], PATHINFO_EXTENSION) == "jpeg" || pathinfo($row_rs_utiles['fichier'], PATHINFO_EXTENSION) == "png" ){ ?>
+                                      <a href="./ouvrirfichier.php?dwn=./fichiers/piecesjointes/<?php echo $row_rs_utiles['fichier'];  ?>"><span style="color: grey"><?php echo $row_rs_utiles['fichier']; ?></span></a>
+                                    <?php } ?>
                                     </div>
 
                                     <div class="form-group">
@@ -608,7 +444,14 @@ textarea{
                                           <td><p style="color:blue">lien en bleu</p<</td>
                                           <td>fichier word</td>
                                         </tr>
-
+										<tr>
+                                          <td><p style="color:orange">lien en orange</p<</td>
+                                          <td>fichier powerpoint</td>
+                                        </tr>
+										<tr>
+                                          <td><p style="color:grey">lien en gris</p<</td>
+                                          <td>fichier images</td>
+                                        </tr>
                                           </tbody>
                                       </table>
                                       </div>
@@ -617,7 +460,7 @@ textarea{
                                      <div class="clearfix"></div>
                                      <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
                                      <input type="hidden" name="MM_update" value="form1" />
-                                      <button type="submit" class="btn btn-default" name="modifier">Valider les modifications</button>
+                                      <button type="submit" class="btn btn-default" name="modifier" style="background-color: #0bdb00;">Valider les modifications</button>
                                       <?php
 
                                       if(isset($_POST['modifier']))
@@ -636,7 +479,7 @@ textarea{
                                             $videoFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
                                             // Valid file extensions
-                                            $extensions_arr = array("pdf","docx","doc","xlsx","xls");
+                                            $extensions_arr = array("pdf","docx","doc","xlsx","xls","png","jpg","jpeg","ppt","pptx");
 
                                             // Check extension
                                             if( in_array($videoFileType,$extensions_arr) ){
@@ -709,7 +552,7 @@ textarea{
 
 
                                     <div class="form-group">
-                                    <label for="fichier">Piece Jointe</label>
+                                    <label for="fichier">Piece Jointe (formats autorisés: pdf, docx, doc, xlsx, xls, ppt, pptx, png, jpg, jpeg)</label>
                                     <input type="file" id="fichier" name="fichier" required>
                                   </div></br>
 
@@ -764,7 +607,7 @@ textarea{
                                      <input type="hidden" name="id" value="" />
                                      <input type="hidden" name="MM_update2" value="form1" />
 
-                                      <button type="submit" class="btn btn-default" name="ajouter" value="ajouter">Ajouter</button> </form>
+                                      <button type="submit" class="btn btn-default" name="ajouter" value="ajouter" style="background-color: #0bdb00;"><i class="fa fa-plus"></i> Ajouter</button> </form>
                                       <?php
 
                                       if(isset($_POST['ajouter'])){
@@ -779,7 +622,7 @@ textarea{
                                         $videoFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
                                         // Valid file extensions
-                                        $extensions_arr = array("pdf","docx","doc","xlsx","xls");
+                                        $extensions_arr = array("pdf","docx","doc","xlsx","xls","png","jpg","jpeg","ppt","pptx");
 
                                         // Check extension
                                         if( in_array($videoFileType,$extensions_arr) ){
@@ -901,7 +744,8 @@ textarea{
 
               </script>
   <?php }else{
-          header('Location: acceserreur.php');
+          $url = "acceserreur.php";
+          echo "<script>setTimeout(function(){location.href='".$url."'}, 0);</script>";
       } ?>
 
 <!--js -->

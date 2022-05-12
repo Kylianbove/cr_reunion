@@ -14,7 +14,7 @@
 
 
   <link rel="stylesheet" href="css/site.css">
-  <link rel="stylesheet" href="css/style.css">
+ 
 
 </head>
 <body>
@@ -70,10 +70,13 @@
 
 
 
-              <div id="inscription">
-                <form action="" method="POST">
+              <div class="col-sm-12">
+                   <h2>Mot de Passe Oublié</h2>
 
-                    <h1>Mot de Passe Oublié</h1>
+                </div>
+                <div class="col-sm-12" id="inscription">
+
+                  <form action="" method="POST">
 
                       <label><b>Nouveau mot de passe</b></label>
                       <input type="password" placeholder="Saisissez votre nouveau mot de passe" name="password" required>
@@ -163,10 +166,10 @@
                     }
 
                      ?>
-
+                     </div>
                 </form>
 
-              </div>
+              
         </div>
         <?php
       }

@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Mon Espace Salarié - Accueil</title>
+  <title>Mon Espace Salarié - Contributions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="fa/fa6/css/all.css">
@@ -31,13 +31,15 @@
 
 
 
-      <div class="col-sm-12">
-         <h2><i class="fa-duotone fa-comment-lines"></i> Contribution</h2>
 
-      </div>
-      <div class="col-sm-12" id="inscription">
 
-                
+                <div class="col-sm-12">
+                   <h2><i class="fa-duotone fa-comment-lines"></i> Contribution</h2>
+
+                </div>
+                <div class="col-sm-12" id="inscription">
+
+                <form action="" method="POST">
 
                   <label><b>Titre</b></label>
                   <input type="text" placeholder="Entrer l'objet de votre contribution" name="titre" required>
@@ -78,10 +80,11 @@
 
                   }
                  ?>
+                  </form>
+               </div>
 
-            </form>
 
-          </div>
+
     </div>
     <?php }else{
       require ("session.class.php");

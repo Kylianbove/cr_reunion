@@ -3,7 +3,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Mon Espace Salarié - Accueil</title>
+  <title>Mon Espace Salarié - Mot de passe oublié</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="fa/fa6/css/all.css">
@@ -14,7 +14,7 @@
 
 
   <link rel="stylesheet" href="css/site.css">
-  <link rel="stylesheet" href="css/style.css">
+  
 
 </head>
 <body>
@@ -28,13 +28,15 @@
 
 
 
-      <div class="col-sm-12">
-       <h2>Mot de Passe Oublié</h2>
+            
+                
+                  <div class="col-sm-12">
+                   <h2>Mot de Passe Oublié</h2>
 
-    </div>
-    <div class="col-sm-12" id="inscription">
+                </div>
+                <div class="col-sm-12" id="inscription">
 
-      <form action="" method="POST">
+                  <form action="" method="POST">
 
                   <label><b>Adresse Mail</b></label>
                   <input type="email" placeholder="Saisissez votre adresse mail" name="email" required>
@@ -52,7 +54,24 @@
 
                 if (isset($_POST['token'])) {
                   require ("session.class.php");
+                  $selectmail = $connexion->prepare("SELECT * FROM  infosutiles WHERE id='1'");
+                  $selectmail->execute();
+                  $mailutiles = $selectmail->fetch();
                   $token = uniqid();
+                  $url = "https://altameos.com/mes/token.php?token=".$token;
+                  $from = $mailutiles['email'];
+
+                  $subject = 'Réinitialisation de votre mot de passe';
+                  $subject = '=?UTF-8?B?'.base64_encode($subject).'?=';
+                  $message = "Bonjour, voici le lien pour la réinitialisation de votre mot de passe : $url";
+                  $headers = [
+
+                     "Content-Type" => "text/plain; charset=UTF-8",
+                     "From" => $from,
+
+                  ];
+
+                  
 
                   $selectuser = $connexion->prepare("SELECT email FROM users WHERE email = '".$_POST['email']."'");
                   $selectuser->execute();
@@ -73,24 +92,29 @@
                   if($user != null || $adminusers != null || $moderateur != null || $contributeur != null){
 
                   if($user != null){
-                  $stmt = $connexion->prepare("UPDATE users SET token = ? WHERE email = ?");
+                    if (mail($_POST['email'], $subject, $message, $headers)) {
+                      $stmt = $connexion->prepare("UPDATE users SET token = ? WHERE email = ?");
+                    }
                   }
                   if($adminusers != null){
-                  $stmt = $connexion->prepare("UPDATE adminusers SET token = ? WHERE email = ?");
+                    if (mail($_POST['email'], $subject, $message, $headers)) {
+                      $stmt = $connexion->prepare("UPDATE adminusers SET token = ? WHERE email = ?");
+                    }
                   }
                   if($moderateur != null){
-                  $stmt = $connexion->prepare("UPDATE moderateur SET token = ? WHERE email = ?");
+                    if (mail($_POST['email'], $subject, $message, $headers)) {
+                      $stmt = $connexion->prepare("UPDATE moderateur SET token = ? WHERE email = ?");
+                    }
                   }
                   if($contributeur != null){
-                  $stmt = $connexion->prepare("UPDATE contributeur SET token = ? WHERE email = ?");
+                    if (mail($_POST['email'], $subject, $message, $headers)) {
+                     $stmt = $connexion->prepare("UPDATE contributeur SET token = ? WHERE email = ?");
+                    }
                   }
                   $stmt->execute([$token, $_POST['email']]);
 
-                  $url = "token.php?token=".$token;
-                  echo "<script>setTimeout(function(){location.href='".$url."'}, 3000);</script>";
-
                   $Session2 = new Session();
-                  $Session2->setFlash("Votre message a bien été envoyé !", 'succes');
+                  $Session2->setFlash("Vous avez reçu un mail pour la réinitialisation de votre mot de passe !", 'succes');
                   $Session2->flash_success();
 
                 }else{
@@ -101,10 +125,10 @@
 
               }
                   ?>
-
+             </div>
             </form>
 
-          </div>
+          
     </div>
 
 

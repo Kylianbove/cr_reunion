@@ -14,13 +14,18 @@ $_SESSION['token_time'] = time();
 
 
 
-}
 
+
+
+}
+$selectlogo = $connexion->prepare("SELECT * FROM infosutiles WHERE id='1'");
+$selectlogo->execute();
+$logo = $selectlogo->fetch();
    ?>
 
 <style>
     header h1{
-    background-image: url('img/logo.png');
+    background-image: url('./admin/uploads/vignettes/<?php echo $logo['logo']; ?>');
     background-repeat: no-repeat;
     background-position: 0 0;
     }
@@ -38,6 +43,11 @@ $_SESSION['token_time'] = time();
                       <?php
 
 
+
+
+
+
+
                       $selectadmin = $connexion->prepare("SELECT * FROM adminusers WHERE email=?");
                       $selectadmin->execute(array($_SESSION['Username']));
                       $administrateur = $selectadmin->fetch();
@@ -51,25 +61,33 @@ $_SESSION['token_time'] = time();
                       $contributeur = $selectcontri->fetch();
 
                       $selectusers = $connexion->prepare("SELECT * FROM users WHERE actif =1 AND email=?");
-      								$selectusers->execute(array($_SESSION['Username']));
-      								$users = $selectusers->fetch();
+      					$selectusers->execute(array($_SESSION['Username']));
+      					$users = $selectusers->fetch();
+
+
+
+
+
 
 
                       if($users != null){
-                      $usersphoto = $connexion->prepare("SELECT * FROM users WHERE photo = '".$users['photo']."'");
-                      $usersphoto->execute();
-                      $photoprofil = $usersphoto->fetch();
+                        $usersphoto = $connexion->prepare("SELECT * FROM users WHERE photo = '".$users['photo']."'");
+                        $usersphoto->execute();
+                        $photoprofil = $usersphoto->fetch();
 
-                      $updatdetoken = $connexion->prepare("UPDATE users SET token = ? WHERE email = ?");
+                        $updatdetoken = $connexion->prepare("UPDATE users SET token = ? WHERE email = ?");
 
-                      if($photoprofil == null){
-                       ?>
-                        <div class="bulle" style="background-color:<?php echo $users['couleur']; ?>"><?php echo $users['prenom'][0]." ".$users['nom'][0]; ?></div>
+                        if($photoprofil == null){ ?>
+
+                          <div class="bulle" style="background-color:<?php echo $users['couleur']; ?>"><?php echo $users['prenom'][0]." ".$users['nom'][0]; ?></div>
+
                         <?php
-          								}else
-          								{ ?>
+          							}else { ?>
+
                             <img src="./admin/photo/<?php echo $users['photo']; ?>" class="bulle">
-                          <?php } ?>
+
+                        <?php } ?>
+
                         <div class="identite">
                             <h3><?php echo $users['prenom']." ".$users['nom']; ?></h3>
                             <a href="mon_espace.php">Mon Espace</a>
@@ -78,20 +96,22 @@ $_SESSION['token_time'] = time();
 
                       <?php
                       if($administrateur != null){
-                      $adminphoto = $connexion->prepare("SELECT * FROM adminusers WHERE photo = '".$administrateur['photo']."'");
-                      $adminphoto->execute();
-                      $photoprofil = $adminphoto->fetch();
+                        $adminphoto = $connexion->prepare("SELECT * FROM adminusers WHERE photo = '".$administrateur['photo']."'");
+                        $adminphoto->execute();
+                        $photoprofil = $adminphoto->fetch();
 
-                      $updatdetoken = $connexion->prepare("UPDATE adminusers SET token = ? WHERE email = ?");
+                        $updatdetoken = $connexion->prepare("UPDATE adminusers SET token = ? WHERE email = ?");
 
-                      if($photoprofil == null){
-                       ?>
+                        if($photoprofil == null){ ?>
+
                         <div class="bulle" style="background-color:<?php echo $administrateur['couleur']; ?>"><?php echo $administrateur['prenom'][0]." ".$administrateur['nom'][0]; ?></div>
                         <?php
-          								}else
-          								{ ?>
+          								}else{ ?>
+
                             <img src="./admin/photo/<?php echo $administrateur['photo']; ?>" class="bulle">
+
                           <?php } ?>
+
                         <div class="identite">
                             <h3><?php echo $administrateur['prenom']." ".$administrateur['nom']; ?></h3>
                             <a href="mon_espace.php">Mon Espace</a>
@@ -100,9 +120,9 @@ $_SESSION['token_time'] = time();
 
                       <?php
                       if($moderateur != null){
-                      $adminphoto = $connexion->prepare("SELECT * FROM moderateur WHERE photo = '".$moderateur['photo']."'");
-                      $adminphoto->execute();
-                      $photoprofil = $adminphoto->fetch();
+                      $modphoto = $connexion->prepare("SELECT * FROM moderateur WHERE photo = '".$moderateur['photo']."'");
+                      $modphoto->execute();
+                      $photoprofil = $modphoto->fetch();
 
                       $updatdetoken = $connexion->prepare("UPDATE moderateur SET token = ? WHERE email = ?");
 
@@ -110,9 +130,10 @@ $_SESSION['token_time'] = time();
                        ?>
                         <div class="bulle" style="background-color:<?php echo $moderateur['couleur']; ?>"><?php echo $moderateur['prenom'][0]." ".$moderateur['nom'][0]; ?></div>
                         <?php
-          								}else
-          								{ ?>
+          								}else	{ ?>
+
                             <img src="./admin/photo/<?php echo $moderateur['photo']; ?>" class="bulle">
+
                           <?php } ?>
                         <div class="identite">
                             <h3><?php echo $moderateur['prenom']." ".$moderateur['nom']; ?></h3>
@@ -122,19 +143,20 @@ $_SESSION['token_time'] = time();
 
                       <?php
                       if($contributeur != null){
-                      $contriphoto = $connexion->prepare("SELECT * FROM contributeur WHERE photo = '".$contributeur['photo']."'");
-                      $contriphoto->execute();
-                      $photoprofil = $contriphoto->fetch();
+                        $contriphoto = $connexion->prepare("SELECT * FROM contributeur WHERE photo = '".$contributeur['photo']."'");
+                        $contriphoto->execute();
+                        $photoprofil = $contriphoto->fetch();
 
-                      $updatdetoken = $connexion->prepare("UPDATE contributeur SET token = ? WHERE email = ?");
+                        $updatdetoken = $connexion->prepare("UPDATE contributeur SET token = ? WHERE email = ?");
 
-                      if($photoprofil == null){
-                       ?>
-                        <div class="bulle" style="background-color:<?php echo $contributeur['couleur']; ?>"><?php echo $contributeur['prenom'][0]." ".$contributeur['nom'][0]; ?></div>
+                        if($photoprofil == null){
+                         ?>
+                          <div class="bulle" style="background-color:<?php echo $contributeur['couleur']; ?>"><?php echo $contributeur['prenom'][0]." ".$contributeur['nom'][0]; ?></div>
                         <?php
-          								}else
-          								{ ?>
+          								}else{ ?>
+
                             <img src="./admin/photo/<?php echo $contributeur['photo']; ?>" class="bulle">
+
                           <?php } ?>
                         <div class="identite">
                             <h3><?php echo $contributeur['prenom']." ".$contributeur['nom']; ?></h3>
@@ -142,6 +164,7 @@ $_SESSION['token_time'] = time();
                         </div>
                       <?php } ?>
                       <?php
+
                       $updatdetoken->execute([$_SESSION['token'], $_SESSION['Username']]);
                       ?>
                         <div class="deconnect">
@@ -188,20 +211,21 @@ $_SESSION['token_time'] = time();
                                       $admin->execute(array($_POST['login']));
                                       $login_admin = $admin->fetch();
 
-                                      $modo = $connexion->prepare("SELECT * FROM moderateur WHERE actif =1 AND email=?");
+                                      $modo = $connexion->prepare("SELECT * FROM moderateur WHERE actif = 1 AND email=?");
                                       $modo->execute(array($_POST['login']));
                                       $login_modo = $modo->fetch();
 
-                                      $conti = $connexion->prepare("SELECT * FROM contributeur WHERE actif =1 AND email=?");
+                                      $conti = $connexion->prepare("SELECT * FROM contributeur WHERE actif = 1 AND email=?");
                                       $conti->execute(array($_POST['login']));
                                       $login_contri = $conti->fetch();
 
-                                      $query_rs_user = $connexion->prepare("SELECT * FROM users WHERE actif =1 AND email=?");
+                                      $query_rs_user = $connexion->prepare("SELECT * FROM users WHERE actif = 1 AND email=?");
                                       $query_rs_user->execute(array($_POST['login']));
                                       $login_users = $query_rs_user->fetch();
 
                                       if($login_users == null && $login_admin == null && $login_modo == null && $login_contri == null){
                                         require ("session.class.php");
+
 
                                         $Session = new Session();
                                         $Session->setFlash('Identifiant ou mot de passe incorrect!', 'error');
@@ -215,12 +239,11 @@ $_SESSION['token_time'] = time();
 
                                         if ($login_users && $isPasswordCorrect)
                                         {
-                                              $_SESSION['Username'] = $_POST['login'];
-                                              $_SESSION['PrevUrl'] = '/cr_reunion/index.php';
 
-                                              $url = "index.php";
-                                              echo "<script>window.location.href='".$url."';</script>";
+                                          $_SESSION['Username'] = $_POST['login'];
 
+                                                $url = "index.php";
+                                                echo "<script>window.location.href='".$url."';</script>";
 
 
 
@@ -228,6 +251,7 @@ $_SESSION['token_time'] = time();
                                           {
 
                                             require ("session.class.php");
+
 
                                             $Session = new Session();
                                             $Session->setFlash('Identifiant ou mot de passe incorrect!', 'error');
@@ -243,8 +267,8 @@ $_SESSION['token_time'] = time();
 
                                           if ($login_admin && $isPasswordCorrect)
                                           {
-                                                $_SESSION['Username'] = $_POST['login'];
-                                                $_SESSION['PrevUrl'] = '/cr_reunion/index.php';
+
+                                            $_SESSION['Username'] = $_POST['login'];
 
                                                 $url = "index.php";
                                                 echo "<script>window.location.href='".$url."';</script>";
@@ -271,11 +295,11 @@ $_SESSION['token_time'] = time();
 
                                             if ($login_modo && $isPasswordCorrect)
                                             {
-                                                  $_SESSION['Username'] = $_POST['login'];
-                                                  $_SESSION['PrevUrl'] = '/cr_reunion/index.php';
 
-                                                  $url = "index.php";
-                                                  echo "<script>window.location.href='".$url."';</script>";
+                                              $_SESSION['Username'] = $_POST['login'];
+
+                                                $url = "index.php";
+                                                echo "<script>window.location.href='".$url."';</script>";
 
 
 
@@ -299,11 +323,11 @@ $_SESSION['token_time'] = time();
 
                                               if ($login_contri && $isPasswordCorrect)
                                               {
-                                                    $_SESSION['Username'] = $_POST['login'];
-                                                    $_SESSION['PrevUrl'] = '/cr_reunion/index.php';
 
-                                                    $url = "index.php";
-                                                    echo "<script>window.location.href='".$url."';</script>";
+                                                $_SESSION['Username'] = $_POST['login'];
+
+                                                $url = "index.php";
+                                                echo "<script>window.location.href='".$url."';</script>";
 
 
 

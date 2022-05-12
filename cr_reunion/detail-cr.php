@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <title>Mon Espace Salarié - Réunions - Titre Compte-Rendu</title>
+  <title>Mon Espace Salarié - Réunions - Détail Compte-Rendu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="fa/fa6/css/all.css">
@@ -11,7 +11,18 @@
   <link rel="stylesheet" href="css/monthly.css">
   <link rel="stylesheet" href="player/dist/skin/blue.monday/css/jplayer.blue.monday.min.css">
   <link rel="stylesheet" href="css/site.css">
-  <meta http-equiv="refresh" content="60">
+  <link rel="stylesheet" href="release/featherlight.min.css">
+  <script type='text/javascript'>
+//<![CDATA[
+function nocontext(e) {
+var clickedTag = (e==null) ? event.srcElement.tagName : e.target.tagName;
+if (clickedTag == "IMG") {
+return false;
+}
+}
+document.oncontextmenu = nocontext;
+//]]>
+</script>
 </head>
 <body>
 <?php include('header.php');
@@ -60,7 +71,7 @@ $id = $_GET['param']; }?>
                               <?php
                               do{
                                 ?>
-                                <img src="./admin/cr_fichiers/images/<?php echo $image['fichier']; ?>" alt="">
+                                     <a href="./admin/cr_fichiers/images/<?php echo $image['fichier']; ?>" data-featherlight="image" style=" background: url('./admin/cr_fichiers/images/<?php echo $image['fichier']; ?>') no-repeat 50% 50%;"><img src="" alt=""><div style=" position: absolute; width: 100%; height:100%;"></div></a>
                               <?php }while($image = $selectimg->fetch());?>
                             </div>
 
@@ -225,6 +236,16 @@ $id = $_GET['param']; }?>
                     if(pathinfo($piecejointe['fichier'], PATHINFO_EXTENSION) == "xls" || pathinfo($piecejointe['fichier'], PATHINFO_EXTENSION) == "xlsx" ){ ?>
                       <li><a href="./ouvrirfichier.php?dwn=<?php echo $file;  ?>&amp;token=<?php echo $token; ?>"><i class="fa-duotone fa-file-excel"></i><span><?php echo $piecejointe['fichier']; ?></span></a></li>
                     <?php } ?>
+					<?php
+
+                    if(pathinfo($piecejointe['fichier'], PATHINFO_EXTENSION) == "ppt" || pathinfo($piecejointe['fichier'], PATHINFO_EXTENSION) == "pptx" ){ ?>
+                      <li><a href="./ouvrirfichier.php?dwn=<?php echo $file;  ?>&amp;token=<?php echo $token; ?>"><i class="fa-duotone fa-file-powerpoint"></i><span><?php echo $piecejointe['fichier']; ?></span></a></li>
+                    <?php } ?>
+					<?php
+
+                    if(pathinfo($piecejointe['fichier'], PATHINFO_EXTENSION) == "png" || pathinfo($piecejointe['fichier'], PATHINFO_EXTENSION) == "jpg" || pathinfo($piecejointe['fichier'], PATHINFO_EXTENSION) == "jpeg" ){ ?>
+                      <li><a href="./ouvrirfichier.php?dwn=<?php echo $file;  ?>&amp;token=<?php echo $token; ?>"><i class="fa-duotone fa-file-image"></i><span><?php echo $piecejointe['fichier']; ?></span></a></li>
+                    <?php } ?>
                   <?php }}}while($piecejointe = $selectpiecejointe->fetch()); ?>
                 </ul>
               <?php }}} ?>
@@ -288,9 +309,10 @@ $id = $_GET['param']; }?>
 
         <a href="liste-cr.php" class="linkBar">Accédez aux CR de réunions</a>
 
-        <a href="contribution.php" class="linkBar">Laissez une contribution</a>
+  <a href="contribution.php" class="linkBar">Laissez une contribution</a>
 
-        <a href="contact.php" class="linkBar">Contactez-nous</a>
+  <a href="contact.php" class="linkBar">Contactez-nous</a>
+
 
     </div>
 
@@ -301,6 +323,7 @@ $id = $_GET['param']; }?>
 <script src="js/site.js"></script>
 <script src="player/dist/jplayer/jquery.jplayer.min.js"></script>
 <script src="player/dist/add-on/jplayer.playlist.min.js"></script>
+<script src="release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -357,7 +380,24 @@ $(document).ready(function(){
 		keyEnabled: true
 	});
 });
+
 //]]>
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+// this part disables the right click
+$('img').on('contextmenu', function(e) {
+return false;
+});
+//this part disables dragging of image
+$('img').on('dragstart', function(e) {
+return false;
+});
+
+});
+ $('a').attr('draggable', false);
+ $('img').attr('draggable', false);
+ document.oncontextmenu = new Function("return false");
 </script>
 
 </body>
