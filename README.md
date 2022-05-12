@@ -11,7 +11,7 @@ etape3: -récupérer le script sql et l'insérer dans une base de données local
         
          -pas de mot de passe
          
-        -nom de la base de données: "cr_reunion"
+        -créer une nouvelle base de données avec comme nom: "cr_reunion"
         
  !Si les informations si-dessus ne sont pas respectées, il faut modifier tout les fichiers db.php avec vos informations.
  
