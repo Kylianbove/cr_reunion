@@ -6,8 +6,8 @@
 
 
     <div class="circles">
-      <p style="color: #e0e0e0;">404<br>
-       <small>PAGE NOT FOUND</small>
+      <p style="color: #e0e0e0;">401<br>
+       <small>UNAUTHORIZED</small>
       </p>
       <span class="circle big"></span>
       <span class="circle med"></span>

@@ -4,8 +4,8 @@
     <div id="title">Vous n'avez pas les droits nécessaires pour accéder à cette page!!!</br> <a href="auth_index.php" class="btn btn-warning">Retourner à l'authentification</a></div>
 
     <div class="circles">
-      <p style="color: #e0e0e0;">404<br>
-       <small>PAGE NOT FOUND</small>
+      <p style="color: #e0e0e0;">401<br>
+       <small>UNAUTHORIZED</small>
       </p>
       <span class="circle big"></span>
       <span class="circle med"></span>
